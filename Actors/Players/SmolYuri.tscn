@@ -12,6 +12,8 @@ size = Vector2( 0.72, 0.88 )
 resource_local_to_scene = true
 flags_transparent = true
 params_cull_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="Animation" id=1]

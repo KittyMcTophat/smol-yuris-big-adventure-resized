@@ -8,6 +8,8 @@ radius = 0.5
 [sub_resource type="QuadMesh" id=2]
 
 [node name="KinematicBody" type="KinematicBody"]
+axis_lock_motion_z = true
+move_lock_z = true
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

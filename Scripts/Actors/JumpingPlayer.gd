@@ -3,8 +3,9 @@ extends Player
 export var move_speed : float = 4.0;
 export var jump_force : float = 5.0;
 export var h_lerp_grounded : float = 5.0;
-export var h_lerp_midair : float = 0.5;
+export var h_lerp_midair : float = 1.5;
 export var v_lerp : float = 3.0;
+export var jump_squash : Vector3 = Vector3(0.9, 1.1, 0.9);
 
 func _physics_process(delta):
 	if allow_movement == false:
@@ -27,6 +28,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = jump_force;
+		squash(jump_squash);
 	
 	if Input.is_action_pressed("jump") == false && velocity.y > 0.0:
 		velocity.y = lerp(velocity.y, 0.0, delta * v_lerp);
