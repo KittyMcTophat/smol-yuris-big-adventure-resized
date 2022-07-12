@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://editor_env.tres" type="Environment" id=1]
+[ext_resource path="res://Scripts/Levels/LevelController.gd" type="Script" id=2]
+[ext_resource path="res://Actors/BaseActors/CameraFollow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Levels/CloudLayer.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Backgrounds/Blue BG.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Backgrounds/Clouds.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Backgrounds/Sun.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Backgrounds/Mountains.png" type="Texture" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 4, 0.5, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 8, 1, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CameraFollow" parent="." instance=ExtResource( 3 )]
+target = NodePath("../SmolYuri")
+parallax_bg = NodePath("../ParallaxBackground")
+max_position = Vector3( 100, 10, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0 )
+light_energy = 0.5
+
+[node name="SmolYuri" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 10, 10 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Background"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( 0, -135 )
+
+[node name="Sun" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Sun"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Clouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 10, 10 )
+motion_mirroring = Vector2( 480, 0 )
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Clouds"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Midground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 20, 20 )
+motion_mirroring = Vector2( 480, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Midground"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 9 )
+centered = false
+offset = Vector2( 0, 10 )
