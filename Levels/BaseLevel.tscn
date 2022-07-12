@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://editor_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scripts/Levels/LevelController.gd" type="Script" id=2]
@@ -9,15 +9,14 @@
 [ext_resource path="res://Sprites/Backgrounds/Clouds.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Backgrounds/Sun.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Backgrounds/Mountains.png" type="Texture" id=9]
+[ext_resource path="res://GroundTiles/GroundTiles.meshlib" type="MeshLibrary" id=10]
 
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 4, 0.5, 0.5 )
+[sub_resource type="CubeMesh" id=1]
 
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 8, 1, 1 )
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.458824, 0.137255, 0.137255, 1 )
 
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.12549, 0.317647, 0.137255, 1 )
+[sub_resource type="BoxShape" id=3]
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource( 1 )
@@ -32,17 +31,34 @@ transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0
 light_energy = 0.5
 
 [node name="SmolYuri" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0 )
+collision_layer = 4
+collision_mask = 35
+axis_lock_motion_z = true
+move_lock_z = true
 
 [node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 1 )
+collision_layer = 2
+collision_mask = 0
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
+
+[node name="GridMap (Ground)" type="GridMap" parent="."]
+mesh_library = ExtResource( 10 )
+cell_size = Vector3( 0.5, 0.5, 1 )
+cell_center_z = false
+collision_mask = 0
+data = {
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 1, 3, 0, 1, 4, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 65538, 0, 0, 65539, 0, 1, 65540, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 0, 131061, 0, 2, 131062, 0, 2, 131064, 0, 2, 131065, 0, 2, 131075, 0, 0, 131076, 0, 1, 131079, 0, 1, 131080, 0, 0, 196597, 0, 2, 196598, 0, 2, 196600, 0, 2, 196601, 0, 2, 196612, 0, 0, 196615, 0, 0, 262133, 0, 2, 262134, 0, 2, 262135, 0, 2, 262136, 0, 2, 262137, 0, 2, 327669, 0, 2, 327670, 0, 2, 327671, 0, 2, 327672, 0, 2, 327673, 0, 2, 393205, 0, 2, 393207, 0, 2, 393209, 0, 2, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65529, 0, 1, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

@@ -1,7 +1,7 @@
 extends Player
 
 export var move_speed : float = 4.0;
-export var jump_force : float = 5.0;
+export var jump_force : float = 6.0;
 export var h_lerp_grounded : float = 5.0;
 export var h_lerp_midair : float = 1.5;
 export var v_lerp : float = 3.0;
