@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Poem Panic!.wav-6ba84fb80f871c98758a93042ecc8b1c.sample"
+
+[deps]
+
+source_file="res://Music/Poem Panic!.wav"
+dest_files=[ "res://.import/Poem Panic!.wav-6ba84fb80f871c98758a93042ecc8b1c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

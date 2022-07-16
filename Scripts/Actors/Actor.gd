@@ -7,10 +7,12 @@ export var turn_time : float = 0.5;
 onready var anim_player : AnimationPlayer = $AnimationPlayer;
 onready var mesh_pivot : Spatial = $MeshPivot;
 
-var turn_tween : Tween = Tween.new();
-var squash_tween : Tween = Tween.new();
+var turn_tween : Tween = null;
+var squash_tween : Tween = null;
 
 func _ready():
+	turn_tween = Tween.new();
+	squash_tween = Tween.new();
 	add_child(turn_tween);
 	add_child(squash_tween);
 

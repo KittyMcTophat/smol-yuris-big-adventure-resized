@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Heal.wav-1a49ee640c7fab2f4353d2fcf95c2a1e.sample"
+
+[deps]
+
+source_file="res://Sound Effects/Heal.wav"
+dest_files=[ "res://.import/Heal.wav-1a49ee640c7fab2f4353d2fcf95c2a1e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

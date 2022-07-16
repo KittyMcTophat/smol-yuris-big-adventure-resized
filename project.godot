@@ -14,10 +14,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Actors/Actor.gd"
 }, {
+"base": "CollectableObject",
+"class": "Coin",
+"language": "GDScript",
+"path": "res://Scripts/Objects/Coin.gd"
+}, {
+"base": "Control",
+"class": "CoinCounter",
+"language": "GDScript",
+"path": "res://Scripts/UI/CoinCounter.gd"
+}, {
+"base": "Spatial",
+"class": "CollectableObject",
+"language": "GDScript",
+"path": "res://Scripts/Objects/CollectableObject.gd"
+}, {
+"base": "PhysicsActor",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Scripts/Actors/Enemy.gd"
+}, {
 "base": "WorldEnvironment",
 "class": "LevelController",
 "language": "GDScript",
 "path": "res://Scripts/Levels/LevelController.gd"
+}, {
+"base": "Control",
+"class": "PauseMenu",
+"language": "GDScript",
+"path": "res://Scripts/UI/PauseMenu.gd"
 }, {
 "base": "Actor",
 "class": "PhysicsActor",
@@ -31,7 +56,12 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"Coin": "",
+"CoinCounter": "",
+"CollectableObject": "",
+"Enemy": "",
 "LevelController": "",
+"PauseMenu": "",
 "PhysicsActor": "",
 "Player": ""
 }
@@ -46,6 +76,7 @@ config/icon="res://Sprites/Actors/Players/SmolYuri/SmolYuriStill.png"
 
 Global="*res://Scripts/Autoload/Global.gd"
 ScreenResizer="*res://Scripts/Autoload/ScreenResizer.gd"
+MusicManager="*res://Scripts/Autoload/MusicManager.gd"
 
 [display]
 
@@ -116,6 +147,13 @@ jump={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -134,3 +172,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_environment="res://editor_env.tres"
+quality/dynamic_fonts/use_oversampling=false

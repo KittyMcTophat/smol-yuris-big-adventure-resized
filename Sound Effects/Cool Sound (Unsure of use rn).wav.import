@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cool Sound (Unsure of use rn).wav-ecba049a82d22e0dc5baa9819aba1248.sample"
+
+[deps]
+
+source_file="res://Sound Effects/Cool Sound (Unsure of use rn).wav"
+dest_files=[ "res://.import/Cool Sound (Unsure of use rn).wav-ecba049a82d22e0dc5baa9819aba1248.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
