@@ -9,15 +9,12 @@ export var v_lerp : float = 3.0;
 export var jump_squash : Vector3 = Vector3(0.9, 1.1, 0.9);
 export var coyote_time : float = 0.2;
 export var jump_buffer : float = 0.2;
+export var stomp_angle : float = 45.0;
 
 var cur_coyote_time : float = 0.0;
 var cur_jump_buffer : float = 0.0;
 
 var jumping_from_stomp : bool = false;
-
-func _ready():
-# warning-ignore:return_value_discarded
-	$StompArea.connect("enemy_stomped", self, "enemy_stomped");
 
 func _physics_process(delta):
 	if allow_movement == false:
@@ -89,6 +86,29 @@ func update_animation():
 			print("Animation not found: " + target_anim);
 
 # warning-ignore:unused_argument
-func enemy_stomped(enemy : Enemy):
+func body_stomped(body):
+	$StompSound.play();
 	jumping_from_stomp = true;
 	_jump(jump_force_after_stomp, false);
+
+func touched_enemy(enemy : Enemy):
+	if check_stomp_angle(enemy):
+		enemy.hurt(1);
+		body_stomped(enemy);
+	else:
+		hurt(1);
+
+func touched_projectile(projectile : Projectile):
+	if check_stomp_angle(projectile):
+		projectile.queue_free();
+		body_stomped(projectile);
+	else:
+		hurt(1);
+
+func check_stomp_angle(other : Spatial) -> bool:
+	var relative_position : Vector3 = other.global_transform.origin - global_transform.origin;
+	relative_position = relative_position.normalized();
+	
+	if rad2deg(relative_position.angle_to(Vector3.DOWN)) <= stomp_angle:
+		return true;
+	return false;

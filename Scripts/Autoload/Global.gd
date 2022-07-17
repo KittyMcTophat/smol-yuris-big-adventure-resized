@@ -13,8 +13,11 @@ func _ready():
 	add_child(ui_canvas_layer);
 	ui_canvas_layer.add_child(coin_counter);
 	ui_canvas_layer.add_child(pause_menu);
+	ui_canvas_layer.add_child(load("res://UI/MouseBlocker.tscn").instance());
 	yield(get_tree(), "idle_frame");
 	print_stray_nodes();
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 
 func reload_scene():
 	coin_counter.money = _money;
