@@ -35,13 +35,19 @@ light_energy = 0.5
 light_indirect_energy = 0.0
 
 [node name="SmolYuri" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.88, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.88, 0 )
+
+[node name="PurpleSmolBowlingBall" parent="." instance=ExtResource( 18 )]
+transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -2.5, 0.82, 0 )
 collision_mask = 33
 axis_lock_motion_z = true
 move_lock_z = true
 
-[node name="PurpleSmolBowlingBall" parent="." instance=ExtResource( 18 )]
-transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.5, 0.82, 0 )
+[node name="PurpleSmolBowlingBall2" parent="." instance=ExtResource( 18 )]
+transform = Transform( -0.707107, -0.707107, 0, 0.707107, -0.707107, 0, 0, 0, 1, 0.5, 0.82, 0 )
+collision_mask = 33
+axis_lock_motion_z = true
+move_lock_z = true
 
 [node name="GridMap (Ground)" type="GridMap" parent="."]
 mesh_library = ExtResource( 10 )
