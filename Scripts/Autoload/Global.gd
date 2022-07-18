@@ -14,6 +14,7 @@ func _ready():
 	ui_canvas_layer.add_child(coin_counter);
 	ui_canvas_layer.add_child(pause_menu);
 	ui_canvas_layer.add_child(load("res://UI/MouseBlocker.tscn").instance());
+	ui_canvas_layer.layer = 1;
 	yield(get_tree(), "idle_frame");
 	print_stray_nodes();
 	

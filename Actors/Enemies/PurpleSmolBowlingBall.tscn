@@ -24,6 +24,9 @@ projectile_spawner = NodePath("MeshPivot/MeshInstance/ProjectileSpawner")
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 3 )
 
+[node name="MeshPivot" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
 [node name="MeshInstance" parent="MeshPivot" index="0"]
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )

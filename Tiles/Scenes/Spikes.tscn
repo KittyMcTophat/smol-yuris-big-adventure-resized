@@ -11,8 +11,9 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 0.22, 0.22, 0.47 )
+[sub_resource type="CylinderShape" id=4]
+radius = 0.2
+height = 1.0
 
 [node name="Spikes" type="Spatial"]
 
@@ -104,5 +105,5 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="Spikes/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.17, 0 )
 shape = SubResource( 4 )

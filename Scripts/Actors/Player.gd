@@ -11,8 +11,8 @@ onready var _damage_detector : Area = $DamageDetector;
 
 func _ready():
 	_damage_detector.add_child($CollisionShape.duplicate());
-	$HealthBar.max_health = max_health;
-	$HealthBar.health = health;
+	$CanvasLayer/HealthBar.max_health = max_health;
+	$CanvasLayer/HealthBar.health = health;
 
 func _physics_process(_delta):
 	if allow_movement == false:
@@ -24,7 +24,7 @@ func _physics_process(_delta):
 	
 	if (use_kill_y && global_transform.origin.y < kill_y):
 		health = 0;
-		$HealthBar.health = health;
+		$CanvasLayer/HealthBar.health = health;
 		kill();
 
 # warning-ignore:unused_argument
@@ -40,7 +40,7 @@ func hurt(amount : int):
 	if $HurtFlash.current_animation == "Hurt":
 		return;
 	health -= amount;
-	$HealthBar.health = health;
+	$CanvasLayer/HealthBar.health = health;
 	if health <= 0:
 		kill();
 	else:
@@ -51,7 +51,7 @@ func heal(amount : int):
 	health += amount;
 	if health > max_health:
 		health = max_health;
-	$HealthBar.health = health;
+	$CanvasLayer/HealthBar.health = health;
 	$Heal.play();
 
 func kill():

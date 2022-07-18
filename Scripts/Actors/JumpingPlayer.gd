@@ -35,20 +35,18 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, target_h_velocity, delta * h_lerp_midair);
 	
-	if Global.allow_jump && Input.is_action_just_pressed("jump"):
+	if is_on_floor():
+		jumping_from_stomp = false;
+		cur_coyote_time = coyote_time;
+	
+	if Input.is_action_just_pressed("jump"):
 		if cur_coyote_time > 0.0:
 			_jump(jump_force);
-			cur_coyote_time = 0.0;
 		else:
 			cur_jump_buffer = jump_buffer;
 	
 	if cur_jump_buffer > 0.0 && is_on_floor():
 		_jump(jump_force);
-		cur_jump_buffer = 0.0;
-	
-	if is_on_floor():
-		jumping_from_stomp = false;
-		cur_coyote_time = coyote_time;
 	
 	if Input.is_action_pressed("jump") == false && jumping_from_stomp == false && velocity.y > 0.0:
 		velocity.y = lerp(velocity.y, 0.0, delta * v_lerp);
@@ -61,6 +59,10 @@ func _physics_process(delta):
 	update_animation();
 
 func _jump(force : float, play_sound : bool = true):
+	if Global.allow_jump == false:
+		return;
+	cur_jump_buffer = 0.0;
+	cur_coyote_time = 0.0;
 	if play_sound:
 		$Jump.play();
 	velocity.y = force;

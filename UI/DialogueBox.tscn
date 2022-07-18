@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/UI/Textbox.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -80.0
+margin_right = 160.0
+texture = ExtResource( 3 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 312.0
+margin_bottom = 72.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "This is example text. This is what it will look like when there is text typed in the game. And [color=red]this[/color] is what it will look like when the color changes mid-sentence."
+text = "This is example text. This is what it will look like when there is text typed in the game. And this is what it will look like when the color changes mid-sentence."
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_left = 89.0
+margin_top = 175.0
+margin_right = 97.0
+margin_bottom = 183.0
+
+[node name="Label" type="Label" parent="PanelContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 60.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 2 )
+text = "Speaker"

@@ -179,12 +179,15 @@ tracks/2/keys = {
 }
 
 [node name="SmolYuri" instance=ExtResource( 1 )]
+collision_mask = 33
+axis_lock_motion_z = true
+move_lock_z = true
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 7 )
 
 [node name="MeshInstance" parent="MeshPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.06, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.56, 0 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
