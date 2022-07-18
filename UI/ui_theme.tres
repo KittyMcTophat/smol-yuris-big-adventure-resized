@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=2]
+[gd_resource type="Theme" load_steps=20 format=2]
 
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Sprites/UI/Panel.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Sprites/UI/Button/Button.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/UI/Button/Button_disabled.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/UI/Button/Button_focus.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI/Slider/Grabber.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/Slider/Bar.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UI/Slider/Grabber_focus.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -43,6 +46,18 @@ margin_right = 8.0
 margin_top = 8.0
 margin_bottom = 8.0
 
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 6, 6 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
@@ -70,6 +85,12 @@ Button/styles/focus = SubResource( 5 )
 Button/styles/hover = SubResource( 6 )
 Button/styles/normal = SubResource( 6 )
 Button/styles/pressed = SubResource( 7 )
+HSlider/icons/grabber = ExtResource( 7 )
+HSlider/icons/grabber_highlight = ExtResource( 9 )
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource( 8 )
+HSlider/styles/grabber_area_highlight = SubResource( 9 )
+HSlider/styles/slider = SubResource( 10 )
 Label/colors/font_color = Color( 0.580392, 0, 0.517647, 1 )
 Label/fonts/font = SubResource( 2 )
 PanelContainer/styles/panel = SubResource( 3 )

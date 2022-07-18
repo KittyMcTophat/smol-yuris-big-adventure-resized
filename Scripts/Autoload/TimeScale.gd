@@ -33,8 +33,11 @@ func _process(delta):
 		MusicManager.audio_stream_player.pitch_scale = Engine.time_scale;
 
 func show_popup():
+# warning-ignore:return_value_discarded
 	popup_tween.remove_all();
 	speed_popup.modulate = Color.white;
 	speed_popup.text = " Speed set to " + ("%1.03f" % target_time_scale) + "x";
+# warning-ignore:return_value_discarded
 	popup_tween.interpolate_property(speed_popup, "modulate", null, Color.transparent, 3.0 * target_time_scale);
+# warning-ignore:return_value_discarded
 	popup_tween.start();
