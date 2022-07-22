@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://editor_env.tres" type="Environment" id=1]
 [ext_resource path="res://Scripts/Levels/LevelController.gd" type="Script" id=2]
 [ext_resource path="res://Actors/BaseActors/CameraFollow.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Levels/CloudLayer.gd" type="Script" id=5]
 [ext_resource path="res://Sprites/Backgrounds/Blue BG.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Backgrounds/Clouds.png" type="Texture" id=7]
@@ -17,8 +16,6 @@
 [ext_resource path="res://Music/Dreams Of Love And Literature.WAV" type="AudioStream" id=15]
 [ext_resource path="res://Objects/SmolCoin_Minecraft.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Tiles/CoinTiles.tres" type="MeshLibrary" id=17]
-[ext_resource path="res://Actors/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Objects/HealingHeart.tscn" type="PackedScene" id=19]
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource( 1 )
@@ -26,22 +23,13 @@ script = ExtResource( 2 )
 music = ExtResource( 15 )
 
 [node name="CameraFollow" parent="." instance=ExtResource( 3 )]
-target = NodePath("../SmolYuri")
+target = NodePath(".")
 parallax_bg = NodePath("../ParallaxBackground")
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
 light_energy = 0.5
 light_indirect_energy = 0.0
-
-[node name="SmolYuri" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.88, 0 )
-
-[node name="PurpleSmolBowlingBall" parent="." instance=ExtResource( 18 )]
-transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -2.5, 0.82, 0 )
-
-[node name="PurpleSmolBowlingBall2" parent="." instance=ExtResource( 18 )]
-transform = Transform( -0.707107, -0.707107, 0, 0.707107, -0.707107, 0, 0, 0, 1, 0.5, 0.82, 0 )
 
 [node name="GridMap (Ground)" type="GridMap" parent="."]
 mesh_library = ExtResource( 10 )
@@ -128,6 +116,3 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 9 )
 centered = false
 offset = Vector2( 0, 25 )
-
-[node name="HealingHeart" parent="." instance=ExtResource( 19 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 2, 0 )

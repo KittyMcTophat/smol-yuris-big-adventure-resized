@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Objects/SmolCookie.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Objects/SmolCookie.png" type="Texture" id=2]
+[ext_resource path="res://Objects/CollectableObject.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_cull_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
+albedo_texture = ExtResource( 2 )
+
+[node name="SmolCookie" instance=ExtResource( 3 )]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" parent="." index="0"]
+material/0 = SubResource( 1 )

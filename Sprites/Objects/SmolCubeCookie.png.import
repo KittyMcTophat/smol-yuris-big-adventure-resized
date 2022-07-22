@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SmolCookie.png-16ecec1df421fc0cc1afc0aa3ec00385.stex"
+path="res://.import/SmolCubeCookie.png-139d123002d8295451ff395e070d01ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Objects/SmolCookie.png"
-dest_files=[ "res://.import/SmolCookie.png-16ecec1df421fc0cc1afc0aa3ec00385.stex" ]
+source_file="res://Sprites/Objects/SmolCubeCookie.png"
+dest_files=[ "res://.import/SmolCubeCookie.png-139d123002d8295451ff395e070d01ac.stex" ]
 
 [params]
 

@@ -42,4 +42,5 @@ func _on_FullscreenButton_pressed():
 	toggle_fullscreen();
 
 func _on_MenuButton_pressed():
-	pass # Replace with function body.
+	Global.load_scene("res://MainMenu.tscn");
+	unpause();

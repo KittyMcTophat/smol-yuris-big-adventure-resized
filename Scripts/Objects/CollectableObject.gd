@@ -5,13 +5,13 @@ class_name CollectableObject
 signal collected
 
 export var rotate : bool = true;
-export var rotate_speed : float = 180.0;
+export var rotate_speed : Vector3 = Vector3(0.0, 180.0, 0.0);
 
 var collectable : bool = true;
 
 func _process(delta):
 	if rotate:
-		$MeshInstance.rotation_degrees.y += rotate_speed * delta;
+		$MeshInstance.rotation_degrees += rotate_speed * delta;
 
 func _on_Area_body_entered(body):
 	if body is Player && collectable:
