@@ -2,6 +2,7 @@ extends PhysicsActor
 
 class_name Player
 
+export var restart_on_death : bool = true;
 export var use_kill_y : bool = true;
 export var kill_y : float = -0.75;
 export var max_health : int = 3;
@@ -66,7 +67,8 @@ func kill():
 	$Death.play();
 	MusicManager.set_music(null);
 	yield(get_tree().create_timer(3.0), "timeout");
-	Global.reload_scene();
+	if restart_on_death:
+		Global.reload_scene();
 
 func touched_enemy(enemy : Enemy):
 	hurt(1);

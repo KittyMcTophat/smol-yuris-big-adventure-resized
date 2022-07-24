@@ -10,6 +10,7 @@ func _ready():
 		if scene_array[cell_id] == null:
 			continue;
 		var child : Spatial = scene_array[cell_id].instance();
+		child.name += str(cell);
 		add_child(child);
 		child.global_transform.origin = map_to_world(cell.x, cell.y, cell.z);
 		set_cell_item(cell.x, cell.y, cell.z, -1);

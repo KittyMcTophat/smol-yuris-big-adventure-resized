@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tiles/GroundTiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://level_env.tres" type="Environment" id=2]
@@ -8,17 +8,47 @@
 [ext_resource path="res://Sprites/Backgrounds/Clouds.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Levels/CloudLayer.gd" type="Script" id=7]
 [ext_resource path="res://Sprites/Actors/Players/SmolYuri/SmolYuriStill.png" type="Texture" id=8]
-[ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://UI/Logo.png" type="Texture" id=9]
 [ext_resource path="res://UI/ui_theme.tres" type="Theme" id=10]
+[ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Music/Doki Doki Literature Club.WAV" type="AudioStream" id=12]
 
-[sub_resource type="QuadMesh" id=1]
+[sub_resource type="GDScript" id=5]
+script/source = "extends WorldEnvironment
+
+export var music : AudioStream = null;
+
+func _ready():
+	Global.coin_counter.modulate = Color.transparent;
+	Global.allow_pause = false;
+	MusicManager.set_music(music);
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		Global.coin_counter.modulate = Color.white;
+		Global.allow_pause = true;
+"
+
+[sub_resource type="QuadMesh" id=6]
+resource_local_to_scene = true
 size = Vector2( 0.72, 0.88 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=7]
+resource_local_to_scene = true
 flags_transparent = true
+params_cull_mode = 2
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 8 )
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+export(String, FILE, \"*.tscn\") var first_level : String = \"\";
+
+func _pressed():
+	Global.load_scene(first_level);
+"
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Button
@@ -29,6 +59,8 @@ func _pressed():
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource( 2 )
+script = SubResource( 5 )
+music = ExtResource( 12 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
@@ -50,10 +82,19 @@ __meta__ = {
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
-[node name="SmolYuri" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.44, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+[node name="SmolYuri" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67, 0.38, 0 )
+override_gravity = true
+
+[node name="MeshInstance" parent="SmolYuri/MeshPivot" index="0"]
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="Jump" parent="SmolYuri" index="5"]
+volume_db = -80.0
+
+[node name="HealthBar" parent="SmolYuri/CanvasLayer" index="0"]
+visible = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -94,59 +135,66 @@ texture = ExtResource( 4 )
 centered = false
 offset = Vector2( 0, 25 )
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 10 )
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_right = 45.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 0
 
-[node name="Logo" type="TextureRect" parent="Control/MarginContainer"]
+[node name="Logo" type="TextureRect" parent="CanvasLayer/Control/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 230.0
+margin_right = 280.0
 margin_bottom = 135.0
 texture = ExtResource( 9 )
-stretch_mode = 4
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control"]
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 25
+margin_left = 50.0
+custom_constants/margin_right = 15
 custom_constants/margin_top = 10
 custom_constants/margin_left = 0
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer2"]
 margin_top = 10.0
-margin_right = 215.0
+margin_right = 175.0
 margin_bottom = 260.0
 alignment = 1
 
-[node name="Button" type="Button" parent="Control/MarginContainer2/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer"]
 margin_top = 85.0
-margin_right = 215.0
+margin_right = 175.0
 margin_bottom = 109.0
 text = "Start Game"
+script = SubResource( 4 )
+first_level = "res://Levels/TestLevel.tscn"
 
-[node name="Button2" type="Button" parent="Control/MarginContainer2/VBoxContainer"]
+[node name="Button2" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer"]
 margin_top = 113.0
-margin_right = 215.0
+margin_right = 175.0
 margin_bottom = 137.0
 text = "Credits"
 
-[node name="Button3" type="Button" parent="Control/MarginContainer2/VBoxContainer"]
+[node name="Button3" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer"]
 margin_top = 141.0
-margin_right = 215.0
+margin_right = 175.0
 margin_bottom = 165.0
 text = "Exit Game"
 script = SubResource( 3 )
 
-[connection signal="ready" from="Control/MarginContainer2/VBoxContainer/Button" to="Control/MarginContainer2/VBoxContainer/Button" method="grab_focus"]
+[connection signal="ready" from="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" to="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" method="grab_focus"]
+
+[editable path="SmolYuri"]

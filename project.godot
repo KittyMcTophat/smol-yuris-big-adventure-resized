@@ -93,7 +93,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Smol Yuri's Bigger Adventure"
-run/main_scene="res://Levels/TestLevel.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://Sprites/Actors/Players/SmolYuri/SmolYuriStill.png"
 
 [autoload]
