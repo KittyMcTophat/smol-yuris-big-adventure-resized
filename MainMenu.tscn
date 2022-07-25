@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Tiles/GroundTiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://level_env.tres" type="Environment" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Music/Doki Doki Literature Club.WAV" type="AudioStream" id=12]
 [ext_resource path="res://Objects/SmolCoin.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=14]
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends WorldEnvironment
@@ -57,6 +58,63 @@ script/source = "extends Button
 func _pressed():
 	get_tree().quit();
 "
+
+[sub_resource type="GDScript" id=12]
+script/source = "extends CanvasLayer
+
+func _ready():
+	if Global.first_load == false:
+		queue_free();
+	else:
+		yield(get_tree(), \"idle_frame\");
+		MusicManager.audio_stream_player.playing = false;
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	MusicManager.audio_stream_player.playing = true;
+	queue_free();
+"
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+void fragment(){
+	vec4 working_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	float energy = (working_color.r * 0.2989) + (working_color.g * 0.5870) + (working_color.b * 0.1141);
+	COLOR = vec4(energy, energy, energy, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource( 2 )
@@ -141,6 +199,7 @@ centered = false
 offset = Vector2( 0, 25 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -200,6 +259,30 @@ margin_bottom = 165.0
 text = "Exit Game"
 script = SubResource( 3 )
 
-[connection signal="ready" from="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" to="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" method="grab_focus"]
+[node name="Disclaimer" type="CanvasLayer" parent="."]
+layer = 0
+script = SubResource( 12 )
+
+[node name="ColorRect" type="ColorRect" parent="Disclaimer"]
+material = SubResource( 9 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Node" type="Node" parent="Disclaimer"]
+script = ExtResource( 14 )
+dialogue = "[
+	{\"text\":\"Smol Yuri's Bigger Adventure is a Doki Doki Literature Club fan game that is not affiliated with Team Salvato.\"},
+	{\"text\":\"It is designed to be played only after the official game has been completed.\"},
+	{\"text\":\"You can download Doki Doki Literature Club at: http://ddlc.moe\"},
+]"
+speak_on_ready = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Disclaimer"]
+anims/FadeOut = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[connection signal="tree_exiting" from="Disclaimer" to="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" method="grab_focus"]
+[connection signal="dialogue_finished" from="Disclaimer/Node" to="Disclaimer/AnimationPlayer" method="play" binds= [ "FadeOut" ]]
+[connection signal="animation_finished" from="Disclaimer/AnimationPlayer" to="Disclaimer" method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="SmolYuri"]

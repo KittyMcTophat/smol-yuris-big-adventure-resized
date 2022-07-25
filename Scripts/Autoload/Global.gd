@@ -2,6 +2,7 @@ extends Node
 
 var allow_pause : bool = true;
 var allow_jump : bool = true;
+var first_load : bool = true;
 var level_controller : Node = null;
 var _money : int = 0;
 
@@ -9,12 +10,14 @@ onready var ui_canvas_layer : CanvasLayer = CanvasLayer.new();
 onready var pause_menu : PauseMenu = preload("res://UI/PauseMenu.tscn").instance();
 onready var coin_counter : CoinCounter = preload("res://UI/CoinCounter.tscn").instance();
 onready var fade_in_out_anim_player : AnimationPlayer = preload("res://UI/FadeInOut.tscn").instance();
+onready var dialogue_box : DialogueBox = preload("res://UI/DialogueBox.tscn").instance();
 
 func _ready():
 	add_child(ui_canvas_layer);
 	add_child(fade_in_out_anim_player);
 	ui_canvas_layer.add_child(coin_counter);
 	ui_canvas_layer.add_child(pause_menu);
+	ui_canvas_layer.add_child(dialogue_box);
 	ui_canvas_layer.add_child(preload("res://UI/MouseBlocker.tscn").instance());
 	ui_canvas_layer.layer = 1;
 	yield(get_tree(), "idle_frame");
@@ -26,6 +29,7 @@ func reload_scene():
 	print("reloading scene");
 	
 	pause_the_stuff();
+	first_load = false;
 	
 	fade_in_out_anim_player.play("FadeIn");
 	yield(fade_in_out_anim_player, "animation_finished");
@@ -48,6 +52,7 @@ func load_scene(scene_path : String):
 	print("loading new scene (" + scene_path + ")");
 	
 	pause_the_stuff();
+	first_load = true;
 	
 	fade_in_out_anim_player.play("FadeIn");
 	yield(fade_in_out_anim_player, "animation_finished");
@@ -59,7 +64,10 @@ func load_scene(scene_path : String):
 	if scene_path == "res://MainMenu.tscn":
 		_money = 0;
 		coin_counter.money = 0;
+		# so that the disclaimer only plays once
+		first_load = false;
 	
+# warning-ignore:return_value_discarded
 	get_tree().change_scene_to(new_scene);
 	
 	fade_in_out_anim_player.play("FadeOut");
