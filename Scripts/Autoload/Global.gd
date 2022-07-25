@@ -56,6 +56,10 @@ func load_scene(scene_path : String):
 	_money = coin_counter.money;
 	var new_scene : PackedScene = load(scene_path);
 	
+	if scene_path == "res://MainMenu.tscn":
+		_money = 0;
+		coin_counter.money = 0;
+	
 	get_tree().change_scene_to(new_scene);
 	
 	fade_in_out_anim_player.play("FadeOut");
