@@ -20,7 +20,10 @@ func _physics_process(delta):
 	if allow_movement == false:
 		return;
 	
-	var h_input : float = Input.get_axis("move_left", "move_right");
+	var h_input : float = get_input_vector().x;
+	if abs(h_input) < 0.5:
+		h_input = 0.0;
+	
 	if h_input > 0.1:
 		turn(0.0);
 	elif h_input < -0.1:

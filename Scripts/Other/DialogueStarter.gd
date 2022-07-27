@@ -1,5 +1,7 @@
 extends Node
 
+class_name DialogueStarter
+
 signal dialogue_finished;
 
 export(String, MULTILINE) var dialogue : String = """[

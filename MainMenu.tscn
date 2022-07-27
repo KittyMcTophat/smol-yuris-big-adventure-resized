@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Tiles/GroundTiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://level_env.tres" type="Environment" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Music/Doki Doki Literature Club.WAV" type="AudioStream" id=12]
 [ext_resource path="res://Objects/SmolCoin.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=14]
+[ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Scripts/UI/HideBasedOnInputMethod.gd" type="Script" id=16]
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends WorldEnvironment
@@ -59,6 +61,11 @@ func _pressed():
 	get_tree().quit();
 "
 
+[sub_resource type="DynamicFont" id=13]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 15 )
+
 [sub_resource type="GDScript" id=12]
 script/source = "extends CanvasLayer
 
@@ -69,6 +76,7 @@ func _ready():
 		yield(get_tree(), \"idle_frame\");
 		MusicManager.audio_stream_player.playing = false;
 
+# warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
 	MusicManager.audio_stream_player.playing = true;
 	queue_free();
@@ -244,7 +252,7 @@ margin_right = 175.0
 margin_bottom = 109.0
 text = "Start Game"
 script = SubResource( 4 )
-first_level = "res://Levels/TestLevel.tscn"
+first_level = "res://Levels/Level0.tscn"
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer"]
 margin_top = 113.0
@@ -258,6 +266,38 @@ margin_right = 175.0
 margin_bottom = 165.0
 text = "Exit Game"
 script = SubResource( 3 )
+
+[node name="NavigationTutorial" type="Control" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Controller" type="RichTextLabel" parent="CanvasLayer/Control/NavigationTutorial"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+custom_fonts/normal_font = SubResource( 13 )
+bbcode_enabled = true
+bbcode_text = "[center]Select - [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/D Pad.png[/img] [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Left Stick.png[/img]	Confirm - [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/A Button.png[/img]"
+text = "Select -  	Confirm - "
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 16 )
+
+[node name="Keyboard" type="RichTextLabel" parent="CanvasLayer/Control/NavigationTutorial"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+custom_fonts/normal_font = SubResource( 13 )
+bbcode_enabled = true
+bbcode_text = "[center]Select - [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Arrow Keys.png[/img] [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/WASD Keys.png[/img] Confirm - [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Spacebar.png[/img]"
+text = "Select -   Confirm - "
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 16 )
+is_controller = false
 
 [node name="Disclaimer" type="CanvasLayer" parent="."]
 layer = 0
@@ -282,6 +322,7 @@ anims/FadeOut = SubResource( 10 )
 anims/RESET = SubResource( 11 )
 
 [connection signal="tree_exiting" from="Disclaimer" to="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" method="grab_focus"]
+[connection signal="tree_exiting" from="Disclaimer" to="CanvasLayer/Control/NavigationTutorial" method="show"]
 [connection signal="dialogue_finished" from="Disclaimer/Node" to="Disclaimer/AnimationPlayer" method="play" binds= [ "FadeOut" ]]
 [connection signal="animation_finished" from="Disclaimer/AnimationPlayer" to="Disclaimer" method="_on_AnimationPlayer_animation_finished"]
 

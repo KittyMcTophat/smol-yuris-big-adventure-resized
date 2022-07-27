@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Sprites/UI/Textbox.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/UI/DialogueBox.gd" type="Script" id=4]
 [ext_resource path="res://Sound Effects/Blip.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scripts/UI/HideBasedOnInputMethod.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/UI/Tutorial Button Icons/No sRGB/A Button.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/Tutorial Button Icons/No sRGB/Spacebar.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -16,7 +19,7 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "Hide"
-length = 0.5
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
@@ -24,7 +27,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -170 ), Vector2( 0, -270 ) ]
@@ -36,7 +39,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -71,7 +74,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Show"
-length = 0.5
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
@@ -79,7 +82,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, -270 ), Vector2( 0, -170 ) ]
@@ -163,6 +166,31 @@ margin_right = 92.0
 margin_bottom = 12.0
 custom_fonts/font = SubResource( 2 )
 text = "Smol Sayori"
+
+[node name="AdvanceButtonHint" type="Control" parent="MarginContainer/Textbox"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Controller" type="TextureRect" parent="MarginContainer/Textbox/AdvanceButtonHint"]
+margin_left = -24.0
+margin_top = -24.0
+margin_right = -5.0
+margin_bottom = -5.0
+texture = ExtResource( 7 )
+stretch_mode = 3
+script = ExtResource( 6 )
+
+[node name="Keyboard" type="TextureRect" parent="MarginContainer/Textbox/AdvanceButtonHint"]
+margin_left = -45.0
+margin_top = -24.0
+margin_right = -5.0
+margin_bottom = -5.0
+texture = ExtResource( 8 )
+stretch_mode = 3
+script = ExtResource( 6 )
+is_controller = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"

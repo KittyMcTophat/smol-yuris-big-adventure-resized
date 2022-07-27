@@ -1,5 +1,8 @@
 extends Node
 
+signal controller_updated
+var using_controller : bool = false;
+
 var allow_pause : bool = true;
 var allow_jump : bool = true;
 var first_load : bool = true;
@@ -11,6 +14,16 @@ onready var pause_menu : PauseMenu = preload("res://UI/PauseMenu.tscn").instance
 onready var coin_counter : CoinCounter = preload("res://UI/CoinCounter.tscn").instance();
 onready var fade_in_out_anim_player : AnimationPlayer = preload("res://UI/FadeInOut.tscn").instance();
 onready var dialogue_box : DialogueBox = preload("res://UI/DialogueBox.tscn").instance();
+
+func _input(event):
+	if event is InputEventKey:
+		if using_controller:
+			using_controller = false;
+			emit_signal("controller_updated");
+	elif event is InputEventJoypadButton:
+		if using_controller == false:
+			using_controller = true;
+			emit_signal("controller_updated");
 
 func _ready():
 	add_child(ui_canvas_layer);
@@ -24,6 +37,8 @@ func _ready():
 	print_stray_nodes();
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+	set_process_input(true);
+	pause_mode = PAUSE_MODE_PROCESS;
 
 func reload_scene():
 	print("reloading scene");
