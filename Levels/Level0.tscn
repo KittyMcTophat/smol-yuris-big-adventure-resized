@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Sprites/Actors/Players/SmolYuri/SmolYuriStill.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=7]
 [ext_resource path="res://Sprites/Actors/Friends/SmolSayoriStill.png" type="Texture" id=8]
+[ext_resource path="res://Objects/HealingHeart.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/SmolCookie.tscn" type="PackedScene" id=10]
 
 [sub_resource type="QuadMesh" id=13]
 resource_local_to_scene = true
@@ -81,33 +83,46 @@ flags_transparent = true
 flags_albedo_tex_force_srgb = true
 albedo_texture = SubResource( 11 )
 
+[sub_resource type="ViewportTexture" id=17]
+viewport_path = NodePath("HeartTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=18]
+resource_local_to_scene = true
+render_priority = -1
+flags_transparent = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 17 )
+
+[sub_resource type="ViewportTexture" id=19]
+viewport_path = NodePath("PauseTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=20]
+resource_local_to_scene = true
+render_priority = -1
+flags_transparent = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 19 )
+
+[sub_resource type="ViewportTexture" id=21]
+viewport_path = NodePath("CookieTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=22]
+resource_local_to_scene = true
+render_priority = -1
+flags_transparent = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 21 )
+
 [node name="WorldEnvironment" instance=ExtResource( 1 )]
 
 [node name="CameraFollow" parent="." index="0"]
 target = NodePath("../SmolYuri")
+max_position = Vector3( 40, 0, 0 )
 
-[node name="SmolYuri" parent="." index="1" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0 )
-
-[node name="MeshPivot" parent="SmolYuri" index="1"]
-transform = Transform( -1, 0, 1.75556e-05, 0, 1, 0, -1.75556e-05, 0, -1, 0, -0.5, 0 )
-
-[node name="MeshInstance" parent="SmolYuri/MeshPivot" index="0"]
-mesh = SubResource( 13 )
-material/0 = SubResource( 14 )
-
-[node name="SmolSayori" parent="." index="2" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.89, 0 )
-dialogue = NodePath("Dialogue")
-
-[node name="MeshInstance" parent="SmolSayori/MeshPivot" index="0"]
-mesh = SubResource( 15 )
-material/0 = SubResource( 16 )
-
-[node name="Dialogue" type="Node" parent="SmolSayori" index="5"]
+[node name="StartingDialogue" type="Node" parent="." index="1"]
 script = ExtResource( 7 )
 dialogue = "[
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Hey Smol Yuri, can you go to [color=red]the smol moon[/color] and get the rare \\\"[color=red]Smol Moon Cookie[/color]\\\"\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Hey Smol Yuri, can you go to [color=red]the smol moon[/color] and get the rare \\\"[color=red]Smol Moon Cookie[/color]\\\"?\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Why?\"},
 	{\"speaker\":\"Smol Sayori\", \"text\":\"I want to eat it...\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay.
@@ -119,22 +134,50 @@ I guess I'll go find a way to get to [color=red]the smol moon[/color]...\"},
 ]"
 speak_on_ready = true
 
-[node name="GridMap (Ground)" parent="." index="4"]
+[node name="SmolYuri" parent="." index="2" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0 )
+
+[node name="MeshPivot" parent="SmolYuri" index="1"]
+transform = Transform( -1, 0, 1.75556e-05, 0, 1, 0, -1.75556e-05, 0, -1, 0, -0.5, 0 )
+
+[node name="MeshInstance" parent="SmolYuri/MeshPivot" index="0"]
+mesh = SubResource( 13 )
+material/0 = SubResource( 14 )
+
+[node name="SmolSayori" parent="." index="3" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.89, 0 )
+dialogue = NodePath("Dialogue")
+
+[node name="MeshInstance" parent="SmolSayori/MeshPivot" index="0"]
+mesh = SubResource( 15 )
+material/0 = SubResource( 16 )
+
+[node name="Dialogue" type="Node" parent="SmolSayori" index="5"]
+script = ExtResource( 7 )
+dialogue = "[
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Hi, Smol Yuri!\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Hello!\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Did you find a way to get to [color=red]the smol moon[/color] yet?\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"I have an idea, but I haven't done it yet.\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Oh...\"},
+]"
+
+[node name="GridMap (Ground)" parent="." index="5"]
 data = {
-"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 655360, 10, 0, 655360, 11, 0, 655360, 12, 0, 0, 14, 0, 1048579, 15, 0, 1048579, 16, 0, 655360, 17, 0, 0, 18, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 65537, 0, 1441796, 65540, 0, 655367, 65543, 0, 1441796, 131061, 0, 2, 131062, 0, 2, 131064, 0, 2, 131065, 0, 2, 196597, 0, 2, 196598, 0, 2, 196600, 0, 2, 196601, 0, 2, 262133, 0, 2, 262134, 0, 2, 262135, 0, 2, 262136, 0, 2, 262137, 0, 2, 327669, 0, 2, 327670, 0, 2, 327671, 0, 2, 327672, 0, 2, 327673, 0, 2, 393205, 0, 2, 393207, 0, 2, 393209, 0, 2, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1, -65528, 0, 655361, -65527, 0, 655361, -65526, 0, 655361, -65525, 0, 655361, -65524, 0, 1, -65523, 0, 655360, -65522, 0, 655360, -65521, 0, 655360, -65520, 0, 655361, -65519, 0, 1, -65518, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -65512, 0, 1, -65511, 0, 1, -65510, 0, 1, -65509, 0, 1, -65508, 0, 1, -65507, 0, 1, -65506, 0, 1, -65505, 0, 1, -65504, 0, 1, -65503, 0, 1, -65502, 0, 1, -65501, 0, 1, -65500, 0, 1, -65499, 0, 1, -65498, 0, 1, -65497, 0, 1, -65496, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 655360, 10, 0, 655360, 11, 0, 655360, 12, 0, 0, 14, 0, 1048579, 15, 0, 1048579, 16, 0, 655360, 17, 0, 0, 18, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 48, 0, 0, 49, 0, 0, 50, 0, 0, 51, 0, 0, 52, 0, 0, 53, 0, 0, 54, 0, 0, 55, 0, 0, 56, 0, 0, 57, 0, 0, 58, 0, 0, 59, 0, 0, 68, 0, 0, 69, 0, 0, 70, 0, 0, 71, 0, 0, 72, 0, 0, 73, 0, 0, 74, 0, 1, 75, 0, 1, 76, 0, 1, 77, 0, 1, 78, 0, 1, 79, 0, 1, 80, 0, 1, 81, 0, 1, 82, 0, 1, 83, 0, 1, 84, 0, 1, 85, 0, 1, 86, 0, 1, 87, 0, 1, 88, 0, 1, 89, 0, 1, 90, 0, 1, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 65537, 0, 1441796, 65540, 0, 655367, 65542, 0, 5, 65543, 0, 1441796, 65546, 0, 655366, 65547, 0, 1441797, 65552, 0, 655365, 65553, 0, 1441798, 65554, 0, 4, 65558, 0, 1048583, 65559, 0, 5, 65561, 0, 1048582, 65562, 0, 4, 65563, 0, 655365, 65565, 0, 7, 65566, 0, 655366, 65567, 0, 4, 65569, 0, 1048582, 65570, 0, 1441796, 65571, 0, 655367, 65575, 0, 655364, 65576, 0, 7, 65577, 0, 1048582, 65578, 0, 655367, 65579, 0, 1441795, 65580, 0, 1441796, 65582, 0, 5, 65583, 0, 655367, 65584, 0, 1048580, 65587, 0, 5, 65588, 0, 655364, 65589, 0, 6, 65590, 0, 1048580, 65591, 0, 655365, 65592, 0, 655367, 65594, 0, 7, 65595, 0, 1048581, 65604, 0, 1441798, 65605, 0, 655364, 65606, 0, 6, 65608, 0, 1048583, 65610, 0, 0, 65611, 0, 0, 65612, 0, 0, 65613, 0, 1, 65614, 0, 1, 65615, 0, 1, 65616, 0, 1, 65617, 0, 1, 65618, 0, 1, 65619, 0, 1, 65620, 0, 1, 65621, 0, 1, 65622, 0, 1, 65623, 0, 1, 65624, 0, 1, 65625, 0, 1, 65626, 0, 1, 131061, 0, 2, 131062, 0, 2, 131064, 0, 2, 131065, 0, 2, 131067, 0, 1048581, 131069, 0, 655365, 131071, 0, 1048582, 131146, 0, 5, 131147, 0, 655364, 131148, 0, 1048583, 131149, 0, 0, 131150, 0, 0, 131151, 0, 0, 131152, 0, 0, 131153, 0, 1, 131154, 0, 1, 131155, 0, 1, 131156, 0, 1, 131157, 0, 1, 131158, 0, 1, 131159, 0, 1, 131160, 0, 1, 131161, 0, 1, 131162, 0, 1, 196597, 0, 2, 196598, 0, 2, 196600, 0, 2, 196601, 0, 2, 196685, 0, 1441799, 196686, 0, 6, 196687, 0, 655364, 196689, 0, 0, 196690, 0, 0, 196691, 0, 0, 196692, 0, 0, 196693, 0, 0, 196694, 0, 0, 196695, 0, 0, 196696, 0, 0, 196697, 0, 0, 196698, 0, 0, 262133, 0, 2, 262134, 0, 2, 262135, 0, 2, 262136, 0, 2, 262137, 0, 2, 262225, 0, 1441796, 262227, 0, 7, 262228, 0, 1441796, 262229, 0, 7, 262230, 0, 655365, 262231, 0, 1048580, 262233, 0, 1441797, 262234, 0, 655364, 327669, 0, 2, 327670, 0, 2, 327671, 0, 2, 327672, 0, 2, 327673, 0, 2, 393205, 0, 2, 393207, 0, 2, 393209, 0, 2, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1, -65528, 0, 655361, -65527, 0, 655361, -65526, 0, 655361, -65525, 0, 655361, -65524, 0, 1, -65523, 0, 655360, -65522, 0, 655360, -65521, 0, 655360, -65520, 0, 655361, -65519, 0, 1, -65518, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -65512, 0, 1, -65511, 0, 1, -65510, 0, 1, -65509, 0, 1, -65508, 0, 1, -65507, 0, 1, -65506, 0, 1, -65505, 0, 1, -65504, 0, 1, -65503, 0, 1, -65502, 0, 1, -65501, 0, 1, -65500, 0, 1, -65499, 0, 1, -65498, 0, 1, -65497, 0, 1, -65496, 0, 1, -65495, 0, 1, -65494, 0, 1, -65493, 0, 1, -65492, 0, 1, -65491, 0, 1, -65490, 0, 1, -65489, 0, 1, -65488, 0, 1, -65487, 0, 1, -65486, 0, 1, -65485, 0, 1, -65484, 0, 1, -65483, 0, 1, -65482, 0, 1, -65481, 0, 1, -65480, 0, 1, -65479, 0, 1, -65478, 0, 1, -65477, 0, 1, -65476, 0, 1, -65475, 0, 1, -65474, 0, 1, -65473, 0, 1, -65472, 0, 1, -65471, 0, 1, -65470, 0, 1, -65469, 0, 1, -65468, 0, 1, -65467, 0, 1, -65466, 0, 1, -65465, 0, 1, -65464, 0, 1, -65463, 0, 1, -65462, 0, 1, -65461, 0, 1, -65460, 0, 1, -65459, 0, 1, -65458, 0, 1, -65457, 0, 1, -65456, 0, 1, -65455, 0, 1, -65454, 0, 1, -65453, 0, 1, -65452, 0, 1, -65451, 0, 1, -65450, 0, 1, -65449, 0, 1, -65448, 0, 1, -65447, 0, 1, -65446, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
 }
 
-[node name="GridMap (Harmful)" parent="." index="5"]
+[node name="GridMap (Harmful)" parent="." index="6"]
 data = {
-"cells": PoolIntArray( 65572, 0, 0, 65573, 0, 0, 65574, 0, 0, 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2 )
+"cells": PoolIntArray( 60, 0, 0, 61, 0, 0, 62, 0, 0, 63, 0, 0, 64, 0, 0, 65, 0, 0, 66, 0, 0, 67, 0, 0, 65572, 0, 0, 65573, 0, 0, 65574, 0, 0, 65585, 0, 0, 65586, 0, 0, 65609, 0, 0, 196598, 0, 2, 196600, 0, 2, 196688, 0, 0, 262135, 0, 2, 262136, 0, 2, 262232, 0, 0 )
 }
 
-[node name="GridMap (Coins)" parent="." index="6"]
+[node name="GridMap (Coins)" parent="." index="7"]
 data = {
-"cells": PoolIntArray( 131095, 0, 0, 131097, 0, 0, 131099, 0, 0, 196598, 0, 2, 196600, 0, 2, 196622, 0, 0, 262135, 0, 2, 262136, 0, 2, 262181, 0, 0 )
+"cells": PoolIntArray( 131095, 0, 0, 131099, 0, 0, 196598, 0, 2, 196600, 0, 2, 196622, 0, 0, 262135, 0, 2, 262136, 0, 2, 262181, 0, 0, 262206, 0, 655360, 262209, 0, 655360, 327743, 0, 655360, 327744, 0, 655360 )
 }
 
-[node name="WalkTutorial" type="Spatial" parent="." index="7"]
+[node name="WalkTutorial" type="Spatial" parent="." index="8"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.1 )
 
 [node name="Viewport" type="Viewport" parent="WalkTutorial" index="0"]
@@ -172,7 +215,7 @@ script = ExtResource( 4 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
 
-[node name="JumpTutorial" type="Spatial" parent="." index="8"]
+[node name="JumpTutorial" type="Spatial" parent="." index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 2.5, -0.1 )
 
 [node name="Viewport" type="Viewport" parent="JumpTutorial" index="0"]
@@ -214,7 +257,7 @@ script = ExtResource( 4 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 7 )
 
-[node name="CoinTutorial" type="Spatial" parent="." index="9"]
+[node name="CoinTutorial" type="Spatial" parent="." index="10"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.75, 2.5, -0.1 )
 
 [node name="Viewport" type="Viewport" parent="CoinTutorial" index="0"]
@@ -237,7 +280,7 @@ text = "Smol coins are optional, but they will increase your score"
 mesh = SubResource( 2 )
 material/0 = SubResource( 9 )
 
-[node name="SpikeTutorial" type="Spatial" parent="." index="10"]
+[node name="SpikeTutorial" type="Spatial" parent="." index="11"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.75, 2.5, -0.1 )
 
 [node name="Viewport" type="Viewport" parent="SpikeTutorial" index="0"]
@@ -259,6 +302,96 @@ text = "Smol spikes will hurt if you touch them, so try to avoid that"
 [node name="MeshInstance" type="MeshInstance" parent="SpikeTutorial" index="1"]
 mesh = SubResource( 2 )
 material/0 = SubResource( 12 )
+
+[node name="HealingHeart" parent="." index="12" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 2.25, 0 )
+
+[node name="HeartTutorial" type="Spatial" parent="." index="13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 2.5, -0.1 )
+
+[node name="Viewport" type="Viewport" parent="HeartTutorial" index="0"]
+size = Vector2( 250, 250 )
+own_world = true
+world = SubResource( 5 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="Text" type="RichTextLabel" parent="HeartTutorial/Viewport" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Smol hearts will heal you when picked up"
+text = "Smol hearts will heal you when picked up"
+
+[node name="MeshInstance" type="MeshInstance" parent="HeartTutorial" index="1"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 18 )
+
+[node name="PauseTutorial" type="Spatial" parent="." index="14"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 2.5, -0.1 )
+
+[node name="Viewport" type="Viewport" parent="PauseTutorial" index="0"]
+size = Vector2( 250, 250 )
+own_world = true
+world = SubResource( 5 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="Keyboard" type="RichTextLabel" parent="PauseTutorial/Viewport" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]You can pause the game by pressing
+[img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Escape Key.png[/img]"
+text = "You can pause the game by pressing
+"
+script = ExtResource( 4 )
+is_controller = false
+
+[node name="Controller" type="RichTextLabel" parent="PauseTutorial/Viewport" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]You can pause the game by pressing
+[img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Start Button.png[/img] or [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/X Button.png[/img]"
+text = "You can pause the game by pressing
+ or "
+script = ExtResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PauseTutorial" index="1"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 20 )
+
+[node name="CookieTutorial" type="Spatial" parent="." index="15"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 2.5, -0.1 )
+
+[node name="Viewport" type="Viewport" parent="CookieTutorial" index="0"]
+size = Vector2( 250, 250 )
+own_world = true
+world = SubResource( 5 )
+transparent_bg = true
+usage = 1
+render_target_v_flip = true
+
+[node name="Text" type="RichTextLabel" parent="CookieTutorial/Viewport" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Grab the smol cookie when you're ready to end the level"
+text = "Grab the smol cookie when you're ready to end the level"
+
+[node name="MeshInstance" type="MeshInstance" parent="CookieTutorial" index="1"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 22 )
+
+[node name="SmolCookie" parent="." index="16" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.75, 3.5, 0 )
 
 [editable path="SmolYuri"]
 [editable path="SmolSayori"]
