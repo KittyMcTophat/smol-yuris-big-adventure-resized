@@ -23,6 +23,8 @@ func _physics_process(delta):
 		queue_free();
 
 func update_direction():
-	direction = direction.rotated(Vector3.UP, rotation.y);
-	direction = direction.rotated(Vector3.RIGHT, rotation.x);
-	direction = direction.rotated(Vector3.BACK, rotation.z);
+	var global_rotation : Vector3 = global_transform.basis.get_euler();
+	
+	direction = direction.rotated(Vector3.UP, global_rotation.y);
+	direction = direction.rotated(Vector3.RIGHT, global_rotation.x);
+	direction = direction.rotated(Vector3.BACK, global_rotation.z);

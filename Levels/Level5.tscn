@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Objects/SmolCookie.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/Objects/Smol Moon.png" type="Texture" id=8]
 [ext_resource path="res://Music/I Still Love You.WAV" type="AudioStream" id=9]
+[ext_resource path="res://Actors/Enemies/BrownSmolBowlingBall.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpatialMaterial" id=10]
 render_priority = -1
@@ -79,7 +80,7 @@ music = ExtResource( 9 )
 [node name="CameraFollow" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0 )
 target = NodePath("../YurisFloatingHead")
-offset = Vector3( 0, 0, 4.92 )
+offset = Vector3( 0, 0, 4.42 )
 max_position = Vector3( 0, 20, 0 )
 
 [node name="GridMap (Ground)" parent="." index="2"]
@@ -100,7 +101,16 @@ data = {
 [node name="YurisFloatingHead" parent="." index="5" instance=ExtResource( 2 )]
 use_kill_y = false
 
-[node name="SmolEarth" type="Spatial" parent="." index="6"]
+[node name="Enemies" type="Spatial" parent="." index="6"]
+
+[node name="BrownSmolBowlingBall" parent="Enemies" index="0" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0 )
+facing_left = true
+
+[node name="BrownSmolBowlingBall2" parent="Enemies" index="1" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0 )
+
+[node name="SmolEarth" type="Spatial" parent="." index="7"]
 transform = Transform( 0.91706, -0.398749, 0, 0.30546, 0.702509, 0.642788, -0.256311, -0.589475, 0.766044, 0, -1.75, 0 )
 
 [node name="CSGSphere" type="CSGSphere" parent="SmolEarth" index="0"]
@@ -122,7 +132,7 @@ anims/spin = SubResource( 4 )
 transform = Transform( 1, -1.49012e-08, 1.49012e-08, -1.49012e-08, 1, 0, 1.49012e-08, 2.98023e-08, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 
-[node name="SmolMoon" parent="." index="7" instance=ExtResource( 7 )]
+[node name="SmolMoon" parent="." index="8" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
 rotate_speed = Vector3( 0, 10, 0 )
 
@@ -139,7 +149,7 @@ material = SubResource( 8 )
 [node name="CollisionShape" parent="SmolMoon/Area" index="0"]
 shape = SubResource( 9 )
 
-[node name="BottomEdge" type="StaticBody" parent="." index="8"]
+[node name="BottomEdge" type="StaticBody" parent="." index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.344, 0 )
 collision_layer = 64
 collision_mask = 0
@@ -148,7 +158,7 @@ collision_mask = 0
 shape = SubResource( 11 )
 
 [node name="Background" parent="ParallaxBackground" index="0"]
-motion_scale = Vector2( 1, 10 )
+motion_scale = Vector2( 1, 5 )
 
 [node name="Sprite" parent="ParallaxBackground/Background" index="0"]
 texture = ExtResource( 5 )

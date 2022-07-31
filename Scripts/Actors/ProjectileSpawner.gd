@@ -25,9 +25,17 @@ func shoot():
 		return;
 	
 	var proj : Spatial = projectile.instance();
-	get_tree().current_scene.add_child(proj);
+	add_child(proj);
 	
 	proj.global_transform.origin = global_transform.origin + offset;
 	proj.global_transform.basis = global_transform.basis;
 	
 	proj.velocity = velocity;
+
+func unparent_all_children():
+	for i in get_child_count():
+		var child : Spatial = get_child(i);
+		var glob_trans : Transform = child.global_transform
+		remove_child(child);
+		get_tree().current_scene.add_child(child);
+		child.global_transform = glob_trans;
