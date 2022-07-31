@@ -109,7 +109,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -270.0
-margin_bottom = -270.0
+margin_right = 480.0
 theme = ExtResource( 1 )
 script = ExtResource( 4 )
 
@@ -153,13 +153,17 @@ bbcode_enabled = true
 bbcode_text = "Hey, Smol Yuri, can you go to [color=red]the smol moon[/color] and get the [color=red]rare \"smol moon cookie\"?[/color]"
 text = "Hey, Smol Yuri, can you go to the smol moon and get the rare \"smol moon cookie\"?"
 
-[node name="SpeakerPanel" type="PanelContainer" parent="MarginContainer/Textbox"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Textbox"]
 margin_left = 9.0
 margin_top = -15.0
-margin_right = 105.0
-margin_bottom = 1.0
+margin_right = 9.0
+margin_bottom = -15.0
 
-[node name="SpeakerLabel" type="Label" parent="MarginContainer/Textbox/SpeakerPanel"]
+[node name="SpeakerPanel" type="PanelContainer" parent="MarginContainer/Textbox/CenterContainer"]
+margin_right = 96.0
+margin_bottom = 16.0
+
+[node name="SpeakerLabel" type="Label" parent="MarginContainer/Textbox/CenterContainer/SpeakerPanel"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 92.0

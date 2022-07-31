@@ -5,8 +5,8 @@ class_name DialogueBox
 signal dialogue_finished;
 signal dialogue_advanced;
 
-onready var speaker_panel : Control = $MarginContainer/Textbox/SpeakerPanel;
-onready var speaker_label : Label = $MarginContainer/Textbox/SpeakerPanel/SpeakerLabel;
+onready var speaker_panel : Control = $MarginContainer/Textbox/CenterContainer/SpeakerPanel;
+onready var speaker_label : Label = $MarginContainer/Textbox/CenterContainer/SpeakerPanel/SpeakerLabel;
 onready var text_label : RichTextLabel = $MarginContainer/Textbox/MarginContainer/RichTextLabel;
 onready var anim_player : AnimationPlayer = $AnimationPlayer;
 

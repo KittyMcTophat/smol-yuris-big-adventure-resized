@@ -35,7 +35,8 @@ func shoot():
 func unparent_all_children():
 	for i in get_child_count():
 		var child : Spatial = get_child(i);
-		var glob_trans : Transform = child.global_transform
-		remove_child(child);
-		get_tree().current_scene.add_child(child);
-		child.global_transform = glob_trans;
+		if child != null:
+			var glob_trans : Transform = child.global_transform
+			remove_child(child);
+			get_tree().current_scene.add_child(child);
+			child.global_transform = glob_trans;
