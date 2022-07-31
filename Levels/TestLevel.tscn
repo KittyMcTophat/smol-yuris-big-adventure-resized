@@ -3,7 +3,7 @@
 [ext_resource path="res://Objects/SmolCubeCookie.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/SmolCookie.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/HealingHeart.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Actors/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Actors/Enemies/BrownSmolBowlingBall.tscn" type="PackedScene" id=7]
@@ -11,7 +11,10 @@
 [node name="WorldEnvironment" instance=ExtResource( 3 )]
 
 [node name="CameraFollow" parent="." index="0"]
-target = NodePath("../SmolYuri")
+target = NodePath("../YurisFloatingHead")
+offset = Vector3( 0, 0, 4.92 )
+max_position = Vector3( 100, 100, 0 )
+min_position = Vector3( 0, 3, 0 )
 
 [node name="GridMap (Ground)" parent="." index="2"]
 data = {
@@ -28,8 +31,8 @@ data = {
 "cells": PoolIntArray( 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2, 327679, 0, 0, 458756, 0, 0 )
 }
 
-[node name="SmolYuri" parent="." index="6" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.88, 0 )
+[node name="YurisFloatingHead" parent="." index="6" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.9, 0 )
 
 [node name="PurpleSmolBowlingBall" parent="." index="7" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75, 0.82, 0 )
