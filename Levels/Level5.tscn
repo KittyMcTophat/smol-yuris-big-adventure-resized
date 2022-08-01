@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Sprites/Objects/Smol Moon.png" type="Texture" id=8]
 [ext_resource path="res://Music/I Still Love You.WAV" type="AudioStream" id=9]
 [ext_resource path="res://Actors/Enemies/BrownSmolBowlingBall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Scripts/UI/HideBasedOnInputMethod.gd" type="Script" id=12]
 
 [sub_resource type="SpatialMaterial" id=10]
 render_priority = -1
@@ -73,6 +75,25 @@ radius = 0.5
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 5.5, 0.25, 0.25 )
 
+[sub_resource type="DynamicFont" id=12]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 11 )
+
+[sub_resource type="QuadMesh" id=13]
+size = Vector2( 2, 2 )
+
+[sub_resource type="ViewportTexture" id=14]
+viewport_path = NodePath("FlyingTutorial/Viewport")
+
+[sub_resource type="SpatialMaterial" id=15]
+resource_local_to_scene = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
+albedo_texture = SubResource( 14 )
+
 [node name="WorldEnvironment" instance=ExtResource( 1 )]
 gravity = Vector3( 0, 0, 0 )
 music = ExtResource( 9 )
@@ -95,7 +116,7 @@ data = {
 
 [node name="GridMap (Coins)" parent="." index="4"]
 data = {
-"cells": PoolIntArray( 131080, 0, 0, 458751, 0, 0, 720887, 0, 0 )
+"cells": PoolIntArray( 327680, 0, 0, 589828, 0, 0, 786440, 0, 0, 983050, 0, 0 )
 }
 
 [node name="YurisFloatingHead" parent="." index="5" instance=ExtResource( 2 )]
@@ -108,10 +129,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0 )
 facing_left = true
 
 [node name="BrownSmolBowlingBall4" parent="Enemies" index="1" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 0 )
 
-[node name="BrownSmolBowlingBall5" parent="Enemies" index="2" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 0 )
+[node name="BrownSmolBowlingBall6" parent="Enemies" index="2" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7.5, 0 )
+
+[node name="BrownSmolBowlingBall5" parent="Enemies" index="3" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0 )
 facing_left = true
 
 [node name="SmolEarth" type="Spatial" parent="." index="7"]
@@ -160,6 +184,56 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="BottomEdge" index="0"]
 shape = SubResource( 11 )
+
+[node name="FlyingTutorial" type="Spatial" parent="." index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1 )
+
+[node name="Viewport" type="Viewport" parent="FlyingTutorial" index="0"]
+size = Vector2( 200, 200 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+usage = 1
+render_target_v_flip = true
+
+[node name="Keyboard" type="RichTextLabel" parent="FlyingTutorial/Viewport" index="0"]
+margin_right = 200.0
+margin_bottom = 200.0
+custom_fonts/normal_font = SubResource( 12 )
+bbcode_enabled = true
+bbcode_text = "
+[center]Use
+[img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Arrow Keys.png[/img] or [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/WASD Keys.png[/img]
+
+To float"
+text = "
+Use
+ or 
+
+To float"
+script = ExtResource( 12 )
+is_controller = false
+
+[node name="Controller" type="RichTextLabel" parent="FlyingTutorial/Viewport" index="1"]
+margin_right = 200.0
+margin_bottom = 200.0
+custom_fonts/normal_font = SubResource( 12 )
+bbcode_enabled = true
+bbcode_text = "
+[center]Use
+[img]res://Sprites/UI/Tutorial Button Icons/No sRGB/D Pad.png[/img] or [img]res://Sprites/UI/Tutorial Button Icons/No sRGB/Left Stick.png[/img]
+
+To float"
+text = "
+Use
+ or 
+
+To float"
+script = ExtResource( 12 )
+
+[node name="MeshInstance" type="MeshInstance" parent="FlyingTutorial" index="1"]
+mesh = SubResource( 13 )
+material/0 = SubResource( 15 )
 
 [node name="Background" parent="ParallaxBackground" index="0"]
 motion_scale = Vector2( 1, 5 )

@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if allow_movement == false:
 		return;
 	
-	if (override_gravity):
+	if (override_gravity || Global.level_controller == null):
 		velocity += gravity * delta;
 		velocity = move_and_slide(velocity, -gravity);
 	else:
