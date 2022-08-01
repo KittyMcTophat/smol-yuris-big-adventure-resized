@@ -1,0 +1,73 @@
+[
+    {"type":"Image", "image_path":"res://Sprites/UI/Credits/MadeByKitty_McTophat.png", "scale":2},
+    
+    {"type":"Subtitle", "text":"", "amount":3},
+
+    {"type":"Title", "text":"Based on Characters By"},
+    {"type":"Subtitle", "text":"Team Salvato"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Music Stolen From"},
+    {"type":"Subtitle", "text":"Doki Doki Literature Club"},
+    {"type":"Subtitle", "text":"(Dan Salvato)"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Lead Programmer"},
+    {"type":"Subtitle", "text":"Kitty_McTophat"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Lead 2D Artist"},
+    {"type":"Subtitle", "text":"Kitty_McTophat"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Lead 3D Artist"},
+    {"type":"Subtitle", "text":"Kitty_McTophat"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Head Level Designer"},
+    {"type":"Subtitle", "text":"Kitty_McTophat"},
+
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Head Writer"},
+    {"type":"Subtitle", "text":"Kitty_McTophat"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+    
+    {"type":"Subtitle", "text":"This game uses the font \"Press Start 2P\"\n which is licensed under the SIL Open Font License,\navailable at scripts.sil.org/OFL"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+
+    {"type":"Title", "text":"Made with the Godot Engine"},
+    {"type":"Subtitle", "text":"godotengine.org/license"},
+    
+    {"type":"Subtitle", "text":"", "amount":2},
+    
+    {"type":"Title", "text":"Special Thanks"},
+    {"type":"Subtitle", "text":"The Literature Club"},
+    {"type":"Subtitle", "text":"The Smol Literature Club"},
+    {"type":"Subtitle", "text":"The Smol Smol Literature Club"},
+    {"type":"Subtitle", "text":"The Smol Smol Smol Literature Club"},
+    {"type":"Subtitle", "text":"The Smol Smol Smol Smol Literature Club"},
+    {"type":"Subtitle", "text":"The Smol Robo Literature Club"},
+    {"type":"Subtitle", "text":"The Long Literature Club\nNot, like a club that reads really long books,\nI mean like Long Yuri and her friends"},
+    {"type":"Subtitle", "text":"The Smol Ghost Literature Club"},
+    {"type":"Subtitle", "text":"The Literature Claw-b\nYou know, like claws\ncause they're cats"},
+    {"type":"Subtitle", "text":"(Smol Chicken Yuri, et al.)"},
+    {"type":"Subtitle", "text":"The Floating Heads Literature Club"},
+    {"type":"Subtitle", "text":"The Non-Floating Heads Literature Club"},
+    {"type":"Subtitle", "text":"You, if you're still reading this"},
+    {"type":"Subtitle", "text":"Everyone who leaves comments on my posts"},
+    {"type":"Subtitle", "text":"My cats"},
+    {"type":"Subtitle", "text":"My cats again, because they deserve extra thanks"},
+    {"type":"Subtitle", "text":"IDK, I guess my family can get a spot here too"},
+
+    {"type":"Subtitle", "text":"", "amount":3},
+
+    {"type":"Image", "image_path":"res://Sprites/UI/Credits/Thanks4Playing.png"}
+]

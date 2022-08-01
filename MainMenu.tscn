@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Tiles/GroundTiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://level_env.tres" type="Environment" id=2]
@@ -25,12 +25,16 @@ export var music : AudioStream = null;
 func _ready():
 	Global.coin_counter.modulate = Color.transparent;
 	Global.allow_pause = false;
-	MusicManager.set_music(music);
+	yield(get_tree(), \"idle_frame\");
+	do_the_music();
 
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
 		Global.coin_counter.modulate = Color.white;
 		Global.allow_pause = true;
+
+func do_the_music():
+	MusicManager.set_music(music);
 "
 
 [sub_resource type="QuadMesh" id=6]
@@ -54,6 +58,19 @@ func _pressed():
 	Global.load_scene(first_level);
 "
 
+[sub_resource type="GDScript" id=16]
+script/source = "extends Button
+
+signal credits_ended
+
+func _pressed():
+	release_focus();
+	Global.credits.roll_credits();
+	yield(Global.credits, \"credits_ended\");
+	grab_focus();
+	emit_signal(\"credits_ended\");
+"
+
 [sub_resource type="GDScript" id=3]
 script/source = "extends Button
 
@@ -70,7 +87,10 @@ font_data = ExtResource( 15 )
 script/source = "extends CanvasLayer
 
 func _ready():
+	MusicManager.audio_stream_player.volume_db = -100.0;
+	yield(MusicManager, \"music_changed\");
 	if Global.first_load == false:
+		MusicManager.audio_stream_player.volume_db = 0.0;
 		queue_free();
 	else:
 		yield(get_tree(), \"idle_frame\");
@@ -78,6 +98,7 @@ func _ready():
 
 # warning-ignore:unused_argument
 func _on_AnimationPlayer_animation_finished(anim_name):
+	MusicManager.audio_stream_player.volume_db = 0.0;
 	MusicManager.audio_stream_player.playing = true;
 	queue_free();
 "
@@ -166,12 +187,6 @@ override_gravity = true
 [node name="MeshInstance" parent="SmolYuri/MeshPivot" index="0"]
 mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
-
-[node name="DamageDetector" parent="SmolYuri" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="AnimationPlayer" parent="SmolYuri" index="3"]
-pause_mode = 0
 
 [node name="Jump" parent="SmolYuri" index="5"]
 volume_db = -80.0
@@ -271,6 +286,7 @@ margin_top = 113.0
 margin_right = 175.0
 margin_bottom = 137.0
 text = "Credits"
+script = SubResource( 16 )
 
 [node name="Button3" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer"]
 margin_top = 141.0
@@ -350,6 +366,7 @@ shape = SubResource( 14 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.344, 0 )
 shape = SubResource( 15 )
 
+[connection signal="credits_ended" from="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button2" to="." method="do_the_music"]
 [connection signal="tree_entered" from="CanvasLayer/Control/NavigationTutorial" to="CanvasLayer/Control/NavigationTutorial" method="hide"]
 [connection signal="tree_exiting" from="Disclaimer" to="CanvasLayer/Control/MarginContainer2/VBoxContainer/Button" method="grab_focus"]
 [connection signal="tree_exiting" from="Disclaimer" to="CanvasLayer/Control/NavigationTutorial" method="show"]
