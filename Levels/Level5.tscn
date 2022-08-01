@@ -116,7 +116,7 @@ data = {
 
 [node name="GridMap (Coins)" parent="." index="4"]
 data = {
-"cells": PoolIntArray( 327680, 0, 0, 589828, 0, 0, 786440, 0, 0, 983050, 0, 0 )
+"cells": PoolIntArray( 327680, 0, 0, 589828, 0, 0, 786440, 0, 0, 983050, 0, 0, 1179648, 0, 0, 1245183, 0, 0 )
 }
 
 [node name="YurisFloatingHead" parent="." index="5" instance=ExtResource( 2 )]
@@ -128,15 +128,28 @@ use_kill_y = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0 )
 facing_left = true
 
-[node name="BrownSmolBowlingBall4" parent="Enemies" index="1" instance=ExtResource( 10 )]
+[node name="BrownSmolBowlingBall2" parent="Enemies" index="1" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 0 )
 
-[node name="BrownSmolBowlingBall6" parent="Enemies" index="2" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7.5, 0 )
-
-[node name="BrownSmolBowlingBall5" parent="Enemies" index="3" instance=ExtResource( 10 )]
+[node name="BrownSmolBowlingBall3" parent="Enemies" index="2" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0 )
 facing_left = true
+
+[node name="BrownSmolBowlingBall4" parent="Enemies" index="3" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7.5, 0 )
+
+[node name="BrownSmolBowlingBall5" parent="Enemies" index="4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 9, 0 )
+facing_left = true
+
+[node name="BrownSmolBowlingBall6" parent="Enemies" index="5" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 10, 0 )
+
+[node name="BrownSmolBowlingBall7" parent="Enemies" index="6" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 10, 0 )
+
+[node name="BrownSmolBowlingBall8" parent="Enemies" index="7" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 10, 0 )
 
 [node name="SmolEarth" type="Spatial" parent="." index="7"]
 transform = Transform( 0.91706, -0.398749, 0, 0.30546, 0.702509, 0.642788, -0.256311, -0.589475, 0.766044, 0, -1.75, 0 )
