@@ -43,6 +43,10 @@ func get_fuckin_launched(v_velocity : float = 6.0, h_velocity : float = 1.5, rot
 	rigidbody.collision_layer = self.collision_layer;
 	rigidbody.collision_mask = self.collision_mask;
 	
+	# Removes collision with the edges of the screen
+	if rigidbody.collision_mask & 64:
+		rigidbody.collision_mask -= 64;
+	
 	for i in get_child_count():
 		var child : Node = get_child(i);
 		var new_child : Node = child.duplicate();
