@@ -1,0 +1,1 @@
+The texture in "Sun_Minecraft.png" was stolen from Minecraft, so it's property of Mojang and not included in this game's license

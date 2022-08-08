@@ -66,7 +66,7 @@ func kill():
 	allow_movement = false;
 	$Death.play();
 	MusicManager.set_music(null);
-	yield(get_tree().create_timer(3.0), "timeout");
+	yield(get_tree().create_timer(3.0, false), "timeout");
 	if restart_on_death:
 		Global.reload_scene();
 

@@ -1,5 +1,7 @@
 extends Player
 
+class_name JumpingPlayer
+
 export var move_speed : float = 4.0;
 export var jump_force : float = 6.0;
 export var jump_force_after_stomp : float = 6.0;

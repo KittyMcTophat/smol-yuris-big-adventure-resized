@@ -41,6 +41,7 @@ func get_fuckin_launched(v_velocity : float = 6.0, h_velocity : float = 1.5, rot
 	var rigidbody : RigidBody = RigidBody.new();
 	get_parent().add_child(rigidbody);
 	rigidbody.global_transform.origin = self.global_transform.origin
+	rigidbody.reset_physics_interpolation();
 	rigidbody.collision_layer = self.collision_layer;
 	rigidbody.collision_mask = self.collision_mask;
 	
