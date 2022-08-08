@@ -31,12 +31,8 @@ func shoot():
 	proj.global_transform.basis = global_transform.basis;
 	
 	proj.velocity = velocity;
-
-func unparent_all_children():
-	for i in get_child_count():
-		var child : Spatial = get_child(i);
-		if child != null:
-			var glob_trans : Transform = child.global_transform
-			remove_child(child);
-			get_tree().current_scene.add_child(child);
-			child.global_transform = glob_trans;
+	
+	var glob_trans : Transform = proj.global_transform
+	remove_child(proj);
+	get_tree().current_scene.add_child(proj);
+	proj.global_transform = glob_trans;

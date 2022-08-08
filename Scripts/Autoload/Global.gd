@@ -14,6 +14,7 @@ onready var pause_menu : PauseMenu = preload("res://UI/PauseMenu.tscn").instance
 onready var coin_counter : CoinCounter = preload("res://UI/CoinCounter.tscn").instance();
 onready var fade_in_out_anim_player : AnimationPlayer = preload("res://UI/FadeInOut.tscn").instance();
 onready var dialogue_box : DialogueBox = preload("res://UI/DialogueBox.tscn").instance();
+onready var credits : Credits = preload("res://UI/Credits.tscn").instance();
 
 func _input(event):
 	if event is InputEventKey:
@@ -31,6 +32,7 @@ func _ready():
 	ui_canvas_layer.add_child(coin_counter);
 	ui_canvas_layer.add_child(pause_menu);
 	ui_canvas_layer.add_child(dialogue_box);
+	ui_canvas_layer.add_child(credits);
 	ui_canvas_layer.add_child(preload("res://UI/MouseBlocker.tscn").instance());
 	ui_canvas_layer.layer = 1;
 	yield(get_tree(), "idle_frame");
@@ -95,5 +97,6 @@ func pause_the_stuff():
 
 func unpause_the_stuff():
 	allow_jump = true;
-	allow_pause = true;
+	if get_tree().current_scene.filename != "res://MainMenu.tscn":
+		allow_pause = true;
 	get_tree().paused = false;

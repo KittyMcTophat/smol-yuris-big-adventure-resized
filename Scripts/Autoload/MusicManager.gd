@@ -1,5 +1,7 @@
 extends Node
 
+signal music_changed(music);
+
 var audio_stream_player : AudioStreamPlayer = AudioStreamPlayer.new();
 
 func _ready():
@@ -12,3 +14,4 @@ func set_music(music : AudioStream):
 	if music != null:
 		audio_stream_player.stream = music;
 		audio_stream_player.play();
+	emit_signal("music_changed", music);

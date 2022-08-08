@@ -55,7 +55,6 @@ func _kill():
 	
 	if projectile_spawner != null && projectile_spawner is ProjectileSpawner:
 		projectile_spawner.enabled = false;
-		projectile_spawner.unparent_all_children();
 	
 	yield(get_tree().create_timer(0.1), "timeout");
 	Global.coin_counter.money += reward_money;
