@@ -49,8 +49,7 @@ func _ready():
 				continue;
 		
 		if line.has("image_path"):
-			var new_image : Image = Image.new();
-			new_image.load(line.image_path);
+			var new_image : Image = load(line.image_path);
 			var new_texture : ImageTexture = ImageTexture.new();
 			new_texture.create_from_image(new_image, 0);
 			new_node.texture = new_texture;

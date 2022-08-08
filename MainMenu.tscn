@@ -87,12 +87,10 @@ font_data = ExtResource( 15 )
 script/source = "extends CanvasLayer
 
 func _ready():
-	MusicManager.audio_stream_player.volume_db = -100.0;
-	yield(MusicManager, \"music_changed\");
 	if Global.first_load == false:
-		MusicManager.audio_stream_player.volume_db = 0.0;
 		queue_free();
 	else:
+		MusicManager.audio_stream_player.volume_db = -80.0;
 		yield(get_tree(), \"idle_frame\");
 		MusicManager.audio_stream_player.playing = false;
 
@@ -208,7 +206,7 @@ mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
 
 [node name="Jump" parent="SmolYuri" index="5"]
-volume_db = -80.0
+volume_db = -6.0
 
 [node name="HealthBar" parent="SmolYuri/CanvasLayer" index="0"]
 visible = false
@@ -315,6 +313,7 @@ text = "Exit Game"
 script = SubResource( 3 )
 
 [node name="NavigationTutorial" type="Control" parent="CanvasLayer/Control"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
