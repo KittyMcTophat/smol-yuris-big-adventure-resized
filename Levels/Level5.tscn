@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=2]
@@ -12,23 +12,19 @@
 [ext_resource path="res://Actors/Enemies/BrownSmolBowlingBall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Fonts/PressStart2P/PressStart2P-Regular.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://Scripts/UI/HideBasedOnInputMethod.gd" type="Script" id=12]
+[ext_resource path="res://Tiles/SpaceTiles.tres" type="MeshLibrary" id=13]
 
-[sub_resource type="SpatialMaterial" id=10]
-render_priority = -1
-flags_unshaded = true
-params_cull_mode = 1
-params_grow = true
-params_grow_amount = 0.025
-albedo_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+[sub_resource type="SphereMesh" id=16]
+radial_segments = 16
+rings = 8
 
 [sub_resource type="SpatialMaterial" id=1]
-next_pass = SubResource( 10 )
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CSGSphere:rotation_degrees")
+tracks/0/path = NodePath("MeshInstance:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -37,14 +33,14 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 360, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "spin"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("CSGSphere:rotation_degrees")
+tracks/0/path = NodePath("MeshInstance:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -58,12 +54,19 @@ tracks/0/keys = {
 
 [sub_resource type="SphereShape" id=2]
 
-[sub_resource type="SpatialMaterial" id=7]
-flags_transparent = true
-params_cull_mode = 2
-params_use_alpha_scissor = true
-params_alpha_scissor_threshold = 0.98
-albedo_color = Color( 1, 1, 1, 0 )
+[sub_resource type="SphereMesh" id=17]
+radius = 0.5
+height = 1.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SpatialMaterial" id=10]
+render_priority = -1
+flags_unshaded = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.025
+albedo_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 
 [sub_resource type="SpatialMaterial" id=8]
 next_pass = SubResource( 10 )
@@ -105,8 +108,9 @@ offset = Vector3( 0, 0, 4.42 )
 max_position = Vector3( 0, 20, 0 )
 
 [node name="GridMap (Ground)" parent="." index="2"]
+mesh_library = ExtResource( 13 )
 data = {
-"cells": PoolIntArray(  )
+"cells": PoolIntArray( 1376253, 0, 0, 1376254, 0, 0, 1376263, 0, 0, 1376264, 0, 0, 1441783, 0, 0, 1441784, 0, 0, 1441785, 0, 0, 1441786, 0, 0, 1441787, 0, 0, 1441788, 0, 0, 1441797, 0, 0, 1441798, 0, 0, 1507331, 0, 0, 1507332, 0, 0, 1572865, 0, 0, 1572866, 0, 0, 1835008, 0, 0, 1835017, 0, 0, 1835018, 0, 0, 1900534, 0, 0, 1900535, 0, 0, 1900543, 0, 0, 1900545, 0, 0, 1900546, 0, 0, 1900552, 0, 0, 1900553, 0, 0, 1966069, 0, 0 )
 }
 
 [node name="GridMap (Harmful)" parent="." index="3"]
@@ -116,50 +120,149 @@ data = {
 
 [node name="GridMap (Coins)" parent="." index="4"]
 data = {
-"cells": PoolIntArray( 327680, 0, 0, 589828, 0, 0, 786440, 0, 0, 983050, 0, 0, 1179648, 0, 0, 1245183, 0, 0 )
+"cells": PoolIntArray( 327680, 0, 0, 589828, 0, 0, 786440, 0, 0, 983050, 0, 0, 1179648, 0, 0, 1245183, 0, 0, 1572864, 0, 0, 1638389, 0, 0, 1638390, 0, 0, 1638399, 0, 0 )
 }
 
 [node name="YurisFloatingHead" parent="." index="5" instance=ExtResource( 2 )]
+allow_movement = true
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+restart_on_death = true
 use_kill_y = false
+kill_y = -0.75
+max_health = 3
+health = 3
+move_speed = Vector2( 4, 4 )
+move_lerp = 3.0
 
 [node name="Enemies" type="Spatial" parent="." index="6"]
 
 [node name="BrownSmolBowlingBall" parent="Enemies" index="0" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
 facing_left = true
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall2" parent="Enemies" index="1" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall3" parent="Enemies" index="2" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
 facing_left = true
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall4" parent="Enemies" index="3" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7.5, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall5" parent="Enemies" index="4" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 9, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
 facing_left = true
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall6" parent="Enemies" index="5" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 10, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall7" parent="Enemies" index="6" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 10, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall8" parent="Enemies" index="7" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 10, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = false
+move_speed = 1.0
+max_left_movement = 1.0
+max_right_movement = 1.0
+h_lerp = 5.0
 
 [node name="SmolEarth" type="Spatial" parent="." index="7"]
+physics_interpolation_mode = 1
 transform = Transform( 0.91706, -0.398749, 0, 0.30546, 0.702509, 0.642788, -0.256311, -0.589475, 0.766044, 0, -1.75, 0 )
 
-[node name="CSGSphere" type="CSGSphere" parent="SmolEarth" index="0"]
-transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
-radial_segments = 16
-rings = 8
-smooth_faces = false
-material = SubResource( 1 )
+[node name="MeshInstance" type="MeshInstance" parent="SmolEarth" index="0"]
+mesh = SubResource( 16 )
+material/0 = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SmolEarth" index="1"]
 autoplay = "spin"
@@ -176,16 +279,11 @@ shape = SubResource( 2 )
 [node name="SmolMoon" parent="." index="8" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
 rotate_speed = Vector3( 0, 10, 0 )
+next_scene = ""
 
 [node name="MeshInstance" parent="SmolMoon" index="0"]
-material/0 = SubResource( 7 )
-
-[node name="CSGSphere" type="CSGSphere" parent="SmolMoon/MeshInstance" index="0"]
-radius = 0.5
-radial_segments = 16
-rings = 8
-smooth_faces = false
-material = SubResource( 8 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 8 )
 
 [node name="CollisionShape" parent="SmolMoon/Area" index="0"]
 shape = SubResource( 9 )

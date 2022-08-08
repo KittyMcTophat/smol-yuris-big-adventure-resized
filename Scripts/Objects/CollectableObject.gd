@@ -9,7 +9,7 @@ export var rotate_speed : Vector3 = Vector3(0.0, 180.0, 0.0);
 
 var collectable : bool = true;
 
-func _process(delta):
+func _physics_process(delta):
 	if rotate:
 		$MeshInstance.rotation_degrees += rotate_speed * delta;
 

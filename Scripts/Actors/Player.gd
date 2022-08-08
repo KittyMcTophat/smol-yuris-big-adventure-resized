@@ -80,5 +80,5 @@ func touched_projectile(proj : Projectile):
 func get_input_vector() -> Vector2:
 	var input_vector : Vector2 = Input.get_vector("move_left", "move_right", "move_down", "move_up");
 	input_vector += Input.get_vector("move_left_analog", "move_right_analog", "move_down_analog", "move_up_analog");
-	input_vector = input_vector.clamped(1.0);
+	input_vector = input_vector.limit_length(1.0);
 	return input_vector;

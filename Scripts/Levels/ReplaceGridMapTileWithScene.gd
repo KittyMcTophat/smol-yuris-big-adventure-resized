@@ -13,4 +13,5 @@ func _ready():
 		child.name += str(cell);
 		add_child(child);
 		child.global_transform.origin = map_to_world(cell.x, cell.y, cell.z);
+		child.reset_physics_interpolation();
 		set_cell_item(cell.x, cell.y, cell.z, -1);

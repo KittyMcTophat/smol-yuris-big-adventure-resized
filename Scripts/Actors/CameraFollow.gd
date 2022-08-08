@@ -23,6 +23,8 @@ func _physics_process(_delta):
 	
 	for i in range(3):
 		global_transform.origin[i] = clamp(global_transform.origin[i], min_position[i], max_position[i]);
-	
+
+# warning-ignore:unused_argument
+func _process(delta):
 	if parallax_bg != null:
-		parallax_bg.scroll_offset = Vector2(-global_transform.origin.x, global_transform.origin.y);
+		parallax_bg.scroll_offset = Vector2(-get_global_transform_interpolated().origin.x, get_global_transform_interpolated().origin.y);
