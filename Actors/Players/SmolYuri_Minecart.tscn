@@ -39,11 +39,12 @@ albedo_texture = ExtResource( 2 )
 size = Vector3( 0.31, 0.25, 0.313 )
 
 [sub_resource type="SpatialMaterial" id=9]
+render_priority = 1
 albedo_color = Color( 0.380392, 0.172549, 0.478431, 1 )
 
 [sub_resource type="CubeMesh" id=15]
 flip_faces = true
-size = Vector3( 0.35, 0.29, 0.353 )
+size = Vector3( 0.35, 0.29, 0.333 )
 
 [sub_resource type="CubeMesh" id=16]
 flip_faces = true
@@ -101,11 +102,7 @@ material/0 = SubResource( 14 )
 mesh = SubResource( 16 )
 material/0 = SubResource( 14 )
 
-[node name="RayCast" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.155, 0 )
-cast_to = Vector3( 0, -0.15, 0 )
-
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="3"]
 anims/Jumping = SubResource( 10 )
 anims/Still = SubResource( 11 )
 anims/Walking = SubResource( 12 )

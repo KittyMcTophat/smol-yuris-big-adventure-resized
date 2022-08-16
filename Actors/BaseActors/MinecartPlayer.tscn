@@ -28,6 +28,5 @@ stomp_angle = 45.0
 [node name="MeshInstance" parent="MeshPivot" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
-[node name="RayCast" type="RayCast" parent="." index="3"]
-cast_to = Vector3( 0, -0.02, 0 )
-collision_mask = 33
+[node name="RayCast" type="RayCast" parent="." index="11"]
+cast_to = Vector3( 0, -0.5, 0 )

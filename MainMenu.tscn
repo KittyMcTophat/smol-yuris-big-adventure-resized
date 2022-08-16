@@ -205,12 +205,6 @@ stomp_angle = 45.0
 mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
 
-[node name="DamageDetector" parent="SmolYuri" index="2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="AnimationPlayer" parent="SmolYuri" index="3"]
-pause_mode = 0
-
 [node name="Jump" parent="SmolYuri" index="5"]
 volume_db = -6.0
 

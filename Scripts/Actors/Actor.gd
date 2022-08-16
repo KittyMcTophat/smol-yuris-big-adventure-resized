@@ -12,8 +12,9 @@ var squash_tween : Tween = null;
 
 func _ready():
 	turn_tween = Tween.new();
-	turn_tween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS;
 	squash_tween = Tween.new();
+	turn_tween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS;
+	squash_tween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS;
 	add_child(turn_tween);
 	add_child(squash_tween);
 
