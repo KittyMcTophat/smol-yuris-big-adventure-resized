@@ -136,6 +136,25 @@ speak_on_ready = true
 
 [node name="SmolYuri" parent="." index="2" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+restart_on_death = true
+use_kill_y = true
+kill_y = -0.75
+max_health = 3
+health = 3
+move_speed = 4.0
+jump_force = 6.0
+jump_force_after_stomp = 6.0
+h_lerp_grounded = 5.0
+h_lerp_midair = 1.5
+v_lerp = 3.0
+jump_squash = Vector3( 0.9, 1.1, 0.9 )
+coyote_time = 0.2
+jump_buffer = 0.2
+stomp_angle = 45.0
 
 [node name="MeshPivot" parent="SmolYuri" index="1"]
 transform = Transform( -1, 0, 1.75556e-05, 0, 1, 0, -1.75556e-05, 0, -1, 0, -0.5, 0 )
@@ -305,6 +324,7 @@ material/0 = SubResource( 12 )
 
 [node name="HealingHeart" parent="." index="12" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 2.25, 0 )
+heal_amount = 1
 
 [node name="HeartTutorial" type="Spatial" parent="." index="13"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 2.5, -0.1 )
@@ -392,6 +412,7 @@ material/0 = SubResource( 22 )
 
 [node name="SmolCookie" parent="." index="16" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.75, 3.5, 0 )
+next_scene = "res://Levels/Level1.tscn"
 
 [editable path="SmolYuri"]
 [editable path="SmolSayori"]
