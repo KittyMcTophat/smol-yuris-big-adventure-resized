@@ -9,7 +9,10 @@ radial_segments = 8
 rings = 4
 
 [sub_resource type="SpatialMaterial" id=3]
+params_diffuse_mode = 4
+params_specular_mode = 4
 albedo_texture = ExtResource( 1 )
+roughness = 0.16
 
 [sub_resource type="SphereShape" id=4]
 radius = 0.25

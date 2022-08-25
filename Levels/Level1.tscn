@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Objects/Smol Sign.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/BaseActors/InteractableActor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=5]
+[ext_resource path="res://Actors/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=6]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 0.5, 0.5 )
@@ -22,7 +23,17 @@ target = NodePath("../SmolYuri")
 
 [node name="GridMap (Ground)" parent="." index="2"]
 data = {
-"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 1, 3, 0, 1, 4, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 65538, 0, 0, 65539, 0, 1, 65540, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 0, 131075, 0, 0, 131076, 0, 1, 131079, 0, 1, 131080, 0, 0, 196612, 0, 0, 196615, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65529, 0, 1, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
+}
+
+[node name="GridMap (Harmful)" parent="." index="3"]
+data = {
+"cells": PoolIntArray( 65551, 0, 0, 65552, 0, 0, 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0 )
+}
+
+[node name="GridMap (Coins)" parent="." index="4"]
+data = {
+"cells": PoolIntArray( 196598, 0, 2, 196600, 0, 2, 196608, 0, 0, 196611, 0, 0, 196623, 0, 0, 196624, 0, 0, 262135, 0, 2, 262136, 0, 2 )
 }
 
 [node name="StartingDialogue" type="Node" parent="." index="5"]
@@ -73,5 +84,37 @@ jump_squash = Vector3( 0.9, 1.1, 0.9 )
 coyote_time = 0.2
 jump_buffer = 0.2
 stomp_angle = 45.0
+
+[node name="Enemies" type="Spatial" parent="." index="8"]
+
+[node name="PurpleSmolBowlingBall" parent="Enemies" index="0" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = true
+move_speed = 1.0
+max_left_movement = 0.0
+max_right_movement = 2.0
+h_lerp = 5.0
+
+[node name="PurpleSmolBowlingBall2" parent="Enemies" index="1" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.82, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = true
+move_speed = 1.0
+max_left_movement = 0.0
+max_right_movement = 2.0
+h_lerp = 5.0
 
 [editable path="SmolSign"]
