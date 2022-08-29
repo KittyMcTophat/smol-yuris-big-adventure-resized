@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sprites/Objects/Smol Sign.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Players/SmolYuri.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=5]
 [ext_resource path="res://Actors/Enemies/PurpleSmolBowlingBall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/SmolCookie.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/Actors/Players/LongYuri/LongYuriStill.png" type="Texture" id=8]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 0.5, 0.5 )
@@ -16,24 +18,38 @@ params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 1 )
 
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 0.66, 3.28 )
+
+[sub_resource type="SpatialMaterial" id=4]
+render_priority = -1
+params_cull_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="CapsuleShape" id=5]
+height = 2.5
+
 [node name="WorldEnvironment" instance=ExtResource( 4 )]
 
 [node name="CameraFollow" parent="." index="0"]
 target = NodePath("../SmolYuri")
+max_position = Vector3( 25.5, 0, 0 )
 
 [node name="GridMap (Ground)" parent="." index="2"]
 data = {
-"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 1, 41, 0, 1, 44, 0, 1, 45, 0, 1, 46, 0, 1, 47, 0, 1, 48, 0, 1, 49, 0, 1, 50, 0, 1, 51, 0, 1, 52, 0, 1, 53, 0, 1, 54, 0, 1, 55, 0, 1, 56, 0, 1, 57, 0, 1, 58, 0, 1, 59, 0, 1, 60, 0, 1, 61, 0, 1, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 65576, 0, 0, 65577, 0, 0, 65586, 0, 0, 65587, 0, 0, 65588, 0, 0, 65589, 0, 0, 65590, 0, 0, 65591, 0, 0, 65592, 0, 0, 65593, 0, 0, 65594, 0, 0, 65595, 0, 0, 65596, 0, 0, 65597, 0, 0, -131066, 0, 1, -131065, 0, 1, -131064, 0, 1, -131048, 0, 1, -131047, 0, 1, -131046, 0, 1, -131045, 0, 1, -131044, 0, 1, -131043, 0, 1, -131042, 0, 1, -131041, 0, 1, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -65504, 0, 1, -65503, 0, 1, -65502, 0, 1, -65501, 0, 1, -65500, 0, 1, -65499, 0, 1, -65498, 0, 1, -65497, 0, 1, -65496, 0, 1, -65495, 0, 1, -65494, 0, 1, -65493, 0, 1, -65492, 0, 1, -65491, 0, 1, -65490, 0, 1, -65489, 0, 1, -65488, 0, 1, -65487, 0, 1, -65486, 0, 1, -65485, 0, 1, -65484, 0, 1, -65483, 0, 1, -65482, 0, 1, -65481, 0, 1, -65480, 0, 1, -65479, 0, 1, -65478, 0, 1, -65477, 0, 1, -65476, 0, 1, -65475, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 1, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1 )
 }
 
 [node name="GridMap (Harmful)" parent="." index="3"]
 data = {
-"cells": PoolIntArray( 65551, 0, 0, 65552, 0, 0, 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0 )
+"cells": PoolIntArray( 65551, 0, 0, 65552, 0, 0, 65580, 0, 0, 65581, 0, 0, 65582, 0, 0, 65583, 0, 0, 65584, 0, 0, 65585, 0, 0, 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0 )
 }
 
 [node name="GridMap (Coins)" parent="." index="4"]
 data = {
-"cells": PoolIntArray( 196598, 0, 2, 196600, 0, 2, 196608, 0, 0, 196611, 0, 0, 196623, 0, 0, 196624, 0, 0, 262135, 0, 2, 262136, 0, 2 )
+"cells": PoolIntArray( 65578, 0, 0, 65579, 0, 0, 196598, 0, 2, 196600, 0, 2, 196608, 0, 0, 196611, 0, 0, 196623, 0, 0, 196624, 0, 0, 262135, 0, 2, 262136, 0, 2, 262196, 0, 0 )
 }
 
 [node name="StartingDialogue" type="Node" parent="." index="5"]
@@ -85,7 +101,47 @@ coyote_time = 0.2
 jump_buffer = 0.2
 stomp_angle = 45.0
 
-[node name="Enemies" type="Spatial" parent="." index="8"]
+[node name="SmolCookie" parent="." index="8" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -5.25, 0 )
+next_scene = "res://Levels/Level2.tscn"
+
+[node name="LongYuri" parent="." index="9" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 1.5, 0 )
+dialogue = NodePath("InteractDialogue")
+
+[node name="MeshPivot" parent="LongYuri" index="1"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.64, 0 )
+
+[node name="MeshInstance" parent="LongYuri/MeshPivot" index="0"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="PlayerDetector" parent="LongYuri" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0 )
+
+[node name="CollisionShape" parent="LongYuri/PlayerDetector" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="InteractButton" parent="LongYuri" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="InteractDialogue" type="Node" parent="LongYuri" index="5"]
+script = ExtResource( 5 )
+dialogue = "[
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Hello, [color=purple]Long Yuri[/color]!\"},
+	{\"speaker\":\"Long Yuri\", \"text\":\"Hi, [color=purple]Smol Yuri[/color]!\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Do you know where [color=purple]Smol Robo Yuri[/color] is?\"},
+	{\"speaker\":\"Long Yuri\", \"text\":\"No, sorry...\"},
+	{\"text\":\"Do you want some help looking for her?\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"That would be great!\"},
+	{\"speaker\":\"Long Yuri\", \"text\":\"Where should we start looking?\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"Well, I've already searched the [color=green]Smol Mountains[/color]...\"},
+	{\"text\":\"So the next most logical place to search is [color=fuchsia]Smol Candyland[/color]!\"},
+	{\"speaker\":\"Long Yuri\", \"text\":\"That makes sense to me!\"},
+]"
+
+[node name="Enemies" type="Spatial" parent="." index="10"]
 
 [node name="PurpleSmolBowlingBall" parent="Enemies" index="0" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82, 0 )
@@ -117,4 +173,37 @@ max_left_movement = 0.0
 max_right_movement = 2.0
 h_lerp = 5.0
 
+[node name="PurpleSmolBowlingBall3" parent="Enemies" index="2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.18, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = true
+move_speed = 1.0
+max_left_movement = 0.0
+max_right_movement = 3.0
+h_lerp = 5.0
+
+[node name="PurpleSmolBowlingBall4" parent="Enemies" index="3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 0.82, 0 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+health = 1
+reward_money = 25
+facing_left = false
+patrolling = true
+move_speed = 1.0
+max_left_movement = 0.0
+max_right_movement = 2.0
+h_lerp = 5.0
+
+[connection signal="dialogue_finished" from="LongYuri/InteractDialogue" to="SmolCookie" method="collect_no_args"]
+
 [editable path="SmolSign"]
+[editable path="LongYuri"]

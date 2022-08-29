@@ -28,3 +28,6 @@ func _collect(player : Player):
 # warning-ignore:unused_argument
 func collect(player : Player):
 	queue_free();
+
+func collect_no_args():
+	_collect(null)

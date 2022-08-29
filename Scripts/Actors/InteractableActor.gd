@@ -1,5 +1,7 @@
 extends Actor
 
+signal interacted;
+
 export var dialogue : NodePath = "";
 
 var dialogue_starter : DialogueStarter = null;
@@ -17,6 +19,7 @@ func _process(delta):
 		return;
 	
 	if Input.is_action_just_pressed("interact"):
+		emit_signal("interacted");
 		dialogue_starter.start_dialogue();
 
 # warning-ignore:unused_argument

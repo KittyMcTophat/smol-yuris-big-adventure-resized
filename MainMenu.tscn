@@ -206,7 +206,7 @@ mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
 
 [node name="Jump" parent="SmolYuri" index="5"]
-volume_db = -6.0
+volume_db = -80.0
 
 [node name="HealthBar" parent="SmolYuri/CanvasLayer" index="0"]
 visible = false
@@ -356,9 +356,9 @@ anchor_bottom = 1.0
 [node name="Node" type="Node" parent="Disclaimer"]
 script = ExtResource( 14 )
 dialogue = "[
-	{\"text\":\"Smol Yuri's Bigger Adventure is a Doki Doki Literature Club fan game that is not affiliated with Team Salvato.\"},
+	{\"text\":\"[color=purple]Smol Yuri's Bigger Adventure[/color] is a [color=fuchsia]Doki Doki Literature Club[/color] fan game that is not affiliated with Team Salvato.\"},
 	{\"text\":\"It is designed to be played only after the official game has been completed.\"},
-	{\"text\":\"You can download Doki Doki Literature Club at: http://ddlc.moe\"},
+	{\"text\":\"You can download [color=fuchsia]Doki Doki Literature Club[/color] at: http://ddlc.moe\"},
 ]"
 speak_on_ready = true
 

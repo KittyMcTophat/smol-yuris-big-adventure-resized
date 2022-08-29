@@ -122,15 +122,15 @@ max_position = Vector3( 40, 0, 0 )
 [node name="StartingDialogue" type="Node" parent="." index="1"]
 script = ExtResource( 7 )
 dialogue = "[
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Hey Smol Yuri, can you go to [color=red]the smol moon[/color] and get the rare \\\"[color=red]Smol Moon Cookie[/color]\\\"?\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Hey [color=purple]Smol Yuri[/color], can you go to [color=red]the smol moon[/color] and get the rare \\\"[color=red]Smol Moon Cookie[/color]\\\"?\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Why?\"},
 	{\"speaker\":\"Smol Sayori\", \"text\":\"I want to eat it...\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Oh, okay.
 I guess I'll go find a way to get to [color=red]the smol moon[/color]...\"},
-	{\"speaker\":\"\", \"text\":\"Smol Yuri puts her smol hand on her smol chin as she begins to think.\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"(I bet I could ask [color=red]Yuri's Floating Head[/color] to carry me there.)\"},
+	{\"speaker\":\"\", \"text\":\"[color=purple]Smol Yuri[/color] puts her smol hand on her smol chin as she begins to think.\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"(I bet I could ask [color=purple]Yuri's Floating Head[/color] to carry me there.)\"},
 	{\"text\":\"(Too bad my smol phone can't reach the void...)\"},
-	{\"speaker\":\"Smol Yuri\", \"text\":\"(I know! I'll find [color=red]Smol Robo Yuri[/color] and ask her to upgrade it!)\"},
+	{\"speaker\":\"Smol Yuri\", \"text\":\"(I know! I'll find [color=purple]Smol Robo Yuri[/color] and ask her to upgrade it!)\"},
 ]"
 speak_on_ready = true
 
@@ -174,7 +174,7 @@ material/0 = SubResource( 16 )
 [node name="Dialogue" type="Node" parent="SmolSayori" index="5"]
 script = ExtResource( 7 )
 dialogue = "[
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Hi, Smol Yuri!\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Hi, [color=purple]Smol Yuri[/color]!\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Hello!\"},
 	{\"speaker\":\"Smol Sayori\", \"text\":\"Did you find a way to get to [color=red]the smol moon[/color] yet?\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"I have an idea, but I haven't done it yet.\"},

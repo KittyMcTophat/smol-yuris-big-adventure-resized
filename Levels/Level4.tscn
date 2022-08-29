@@ -11,9 +11,6 @@
 [node name="CameraFollow" parent="." index="0"]
 target = NodePath("../SmolYuri (Minecart)")
 
-[node name="DirectionalLight" parent="." index="1"]
-transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
-
 [node name="GridMap (Ground)" parent="." index="2"]
 mesh_library = ExtResource( 5 )
 data = {
