@@ -125,7 +125,7 @@ data = {
 
 [node name="GridMap (Harmful)" parent="." index="3"]
 data = {
-"cells": PoolIntArray( 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2 )
+"cells": PoolIntArray(  )
 }
 
 [node name="GridMap (Coins)" parent="." index="4"]

@@ -1,8 +1,23 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Tiles/Textures/Minecraft/dirt.png" type="Texture" id=1]
 [ext_resource path="res://Tiles/Textures/Minecraft/rail.png" type="Texture" id=2]
 [ext_resource path="res://Tiles/Textures/Minecraft/Grass.png" type="Texture" id=3]
+[ext_resource path="res://Tiles/Textures/Minecraft/stone.png" type="Texture" id=4]
+[ext_resource path="res://Tiles/Textures/Minecraft/andesite.png" type="Texture" id=5]
+[ext_resource path="res://Tiles/Textures/Minecraft/granite.png" type="Texture" id=6]
+[ext_resource path="res://Tiles/Textures/Minecraft/diorite.png" type="Texture" id=7]
+[ext_resource path="res://Tiles/Textures/Minecraft/bedrock.png" type="Texture" id=8]
+[ext_resource path="res://Tiles/Textures/Minecraft/coal_ore.png" type="Texture" id=9]
+[ext_resource path="res://Tiles/Textures/Minecraft/copper_ore.png" type="Texture" id=10]
+[ext_resource path="res://Tiles/Textures/Minecraft/diamond_ore.png" type="Texture" id=11]
+[ext_resource path="res://Tiles/Textures/Minecraft/emerald_ore.png" type="Texture" id=12]
+[ext_resource path="res://Tiles/Textures/Minecraft/gold_ore.png" type="Texture" id=13]
+[ext_resource path="res://Tiles/Textures/Minecraft/iron_ore.png" type="Texture" id=14]
+[ext_resource path="res://Tiles/Textures/Minecraft/lapis_ore.png" type="Texture" id=15]
+[ext_resource path="res://Tiles/Textures/Minecraft/redstone_ore.png" type="Texture" id=16]
+[ext_resource path="res://Tiles/Textures/Minecraft/poppy.png" type="Texture" id=17]
+[ext_resource path="res://Tiles/Textures/Minecraft/stone_dark.png" type="Texture" id=18]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.5, 0.5, 1 )
@@ -35,6 +50,58 @@ size = Vector2( 0.707, 0.5 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 0.354, 0, 0.25 )
 
+[sub_resource type="SpatialMaterial" id=10]
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_texture = ExtResource( 11 )
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_texture = ExtResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_texture = ExtResource( 14 )
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_texture = ExtResource( 15 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_texture = ExtResource( 16 )
+
+[sub_resource type="QuadMesh" id=23]
+size = Vector2( 0.5, 0.5 )
+center_offset = Vector3( 0, 0.25, 0 )
+
+[sub_resource type="SpatialMaterial" id=24]
+params_billboard_mode = 2
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
+albedo_texture = ExtResource( 17 )
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_texture = ExtResource( 18 )
+
 [node name="Spatial" type="Spatial"]
 
 [node name="Dirt" type="MeshInstance" parent="."]
@@ -50,6 +117,7 @@ shape = SubResource( 3 )
 
 [node name="Grass" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
 mesh = SubResource( 1 )
 material/0 = SubResource( 9 )
 
@@ -79,3 +147,161 @@ material/0 = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Rail2/StaticBody"]
 shape = SubResource( 7 )
+
+[node name="Stone" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 10 )
+
+[node name="StaticBody" type="StaticBody" parent="Stone"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Stone/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Granite" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 11 )
+
+[node name="StaticBody" type="StaticBody" parent="Granite"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Granite/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Andesite" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 12 )
+
+[node name="StaticBody" type="StaticBody" parent="Andesite"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Andesite/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Diorite" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 13 )
+
+[node name="StaticBody" type="StaticBody" parent="Diorite"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Diorite/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Bedrock" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 14 )
+
+[node name="StaticBody" type="StaticBody" parent="Bedrock"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Bedrock/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Coal Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 15 )
+
+[node name="StaticBody" type="StaticBody" parent="Coal Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Coal Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Copper Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 16 )
+
+[node name="StaticBody" type="StaticBody" parent="Copper Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Copper Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Diamond Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 17 )
+
+[node name="StaticBody" type="StaticBody" parent="Diamond Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Diamond Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Emerald Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 18 )
+
+[node name="StaticBody" type="StaticBody" parent="Emerald Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Emerald Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Gold Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 19 )
+
+[node name="StaticBody" type="StaticBody" parent="Gold Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Gold Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Iron Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 20 )
+
+[node name="StaticBody" type="StaticBody" parent="Iron Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Iron Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Lapis Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 21 )
+
+[node name="StaticBody" type="StaticBody" parent="Lapis Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Lapis Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Redstone Ore" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+visible = false
+mesh = SubResource( 1 )
+material/0 = SubResource( 22 )
+
+[node name="StaticBody" type="StaticBody" parent="Redstone Ore"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Redstone Ore/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Poppy" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25 )
+mesh = SubResource( 23 )
+material/0 = SubResource( 24 )
+
+[node name="Stone (Dark)" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 25 )
+
+[node name="StaticBody" type="StaticBody" parent="Stone (Dark)"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Stone (Dark)/StaticBody"]
+shape = SubResource( 3 )

@@ -52,7 +52,7 @@ cell_center_z = false
 collision_layer = 2
 collision_mask = 0
 data = {
-"cells": PoolIntArray( 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2, 262151, 0, 0 )
+"cells": PoolIntArray( 65550, 0, 0, 65551, 0, 0, 65552, 0, 0, 262151, 0, 0 )
 }
 script = ExtResource( 12 )
 __meta__ = {
