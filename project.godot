@@ -331,5 +331,6 @@ common/physics_interpolation=true
 
 [rendering]
 
+gles3/shaders/shader_compilation_mode=2
 environment/default_environment="res://editor_env.tres"
 quality/dynamic_fonts/use_oversampling=false
