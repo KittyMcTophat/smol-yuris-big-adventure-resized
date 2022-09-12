@@ -61,4 +61,4 @@ kill_y = -50.75
 
 [node name="SmolCubeCookie" parent="." index="7" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.75, -22.5, 0 )
-next_scene = "res://Levels/Level5.tscn"
+next_scene = "res://Levels/Level4_Cutscene.tscn"
