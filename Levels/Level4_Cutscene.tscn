@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Sprites/Objects/Cell Tower.png" type="Texture" id=1]
 [ext_resource path="res://Objects/SmolCubeCookie.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Sprites/Actors/Players/SmolYuri/SmolYuriStill.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Actors/Players/YurisFloatingHead/YurisFloatingHeadStill_Big.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=7]
+[ext_resource path="res://Music/Daijoubu!.WAV" type="AudioStream" id=8]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 0.75, 1.5 )
@@ -77,7 +78,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=10]
 resource_name = "TakeHerAway"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("YurisFloatingHead:translation")
 tracks/0/interp = 1
@@ -85,10 +86,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 1.25, 7.25, -0.1 ), Vector3( 1.25, 0.5, -0.1 ), Vector3( 1.25, 7.25, -0.1 ) ]
+"values": [ Vector3( 1.25, 7.25, -0.1 ), Vector3( 1.25, 7.25, -0.1 ), Vector3( 1.25, 0.5, -0.1 ), Vector3( 1.25, 7.25, -0.1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SmolRoboYuri:translation")
@@ -97,7 +98,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
+"times": PoolRealArray( 0, 2, 3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 1.25, 0.5, 0 ), Vector3( 1.25, 0.5, 0 ), Vector3( 1.25, 7.25, 0 ) ]
@@ -114,6 +115,7 @@ func _on_AnimationPlayer_animation_finished(anim_name : String):
 "
 
 [node name="WorldEnvironment" instance=ExtResource( 3 )]
+music = ExtResource( 8 )
 
 [node name="GridMap (Ground)" parent="." index="2"]
 data = {

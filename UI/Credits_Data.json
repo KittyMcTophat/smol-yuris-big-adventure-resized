@@ -39,7 +39,7 @@
     
     {"type":"Subtitle", "text":"", "amount":2},
     
-    {"type":"Title", "text":"Wrote Some Really Helpful Python Scripts"},
+    {"type":"Title", "text":"Wrote Some Really\nHelpful Python Scripts"},
     {"type":"Subtitle", "text":"Procymbopteryx"},
     
     {"type":"Subtitle", "text":"", "amount":2},
