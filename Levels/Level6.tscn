@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Tiles/MoonTiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=2]
@@ -6,9 +6,11 @@
 [ext_resource path="res://Sprites/Backgrounds/Moon.png" type="Texture" id=4]
 [ext_resource path="res://Actors/Players/SmolRoboYuri.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/Backgrounds/Stars.png" type="Texture" id=6]
+[ext_resource path="res://Music/I Still Love You.WAV" type="AudioStream" id=7]
 
 [node name="WorldEnvironment" instance=ExtResource( 2 )]
 gravity = Vector3( 0, -6, 0 )
+music = ExtResource( 7 )
 
 [node name="CameraFollow" parent="." index="0"]
 target = NodePath("../SmolRoboYuri")
@@ -24,6 +26,11 @@ data = {
 "cells": PoolIntArray(  )
 }
 
+[node name="GridMap (Coins)" parent="." index="4"]
+data = {
+"cells": PoolIntArray( 196598, 0, 2, 196600, 0, 2, 262135, 0, 2, 262136, 0, 2, 327683, 0, 0, 393215, 0, 0 )
+}
+
 [node name="SmolRoboYuri" parent="." index="5" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.38, 0 )
 
@@ -31,7 +38,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.38, 0 )
 texture = ExtResource( 3 )
 
 [node name="Stars" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
-motion_scale = Vector2( 20, 10 )
+motion_scale = Vector2( 5, 10 )
 motion_mirroring = Vector2( 480, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Stars" index="0"]
