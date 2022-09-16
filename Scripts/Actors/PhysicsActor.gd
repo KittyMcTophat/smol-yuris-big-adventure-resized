@@ -16,12 +16,17 @@ func _physics_process(delta):
 	if allow_movement == false:
 		return;
 	
-	if (override_gravity || Global.level_controller == null):
-		velocity += gravity * delta;
-		velocity = move_and_slide(velocity, -gravity);
+	var applied_gravity : Vector3;
+	
+	if (override_gravity):
+		applied_gravity = gravity;
 	else:
-		velocity += Global.level_controller.gravity * delta;
-		velocity = move_and_slide(velocity, -Global.level_controller.gravity);
+		# Gets the gravity from the PhysicsServer
+		var phys_db_state : PhysicsDirectBodyState = PhysicsServer.body_get_direct_state(get_rid());
+		applied_gravity = phys_db_state.total_gravity;
+	
+	velocity += applied_gravity * delta;
+	velocity = move_and_slide(velocity, -applied_gravity);
 	
 	if is_on_floor() && !on_floor_last_frame:
 		squash(landing_squash);

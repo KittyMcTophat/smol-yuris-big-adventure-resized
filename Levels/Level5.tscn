@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Players/YurisFloatingHead.tscn" type="PackedScene" id=2]
@@ -82,6 +82,9 @@ roughness = 0.06
 [sub_resource type="SphereShape" id=9]
 radius = 0.5
 
+[sub_resource type="SphereShape" id=18]
+radius = 0.45
+
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 5.5, 0.25, 0.25 )
 
@@ -134,8 +137,6 @@ data = {
 }
 
 [node name="YurisFloatingHead" parent="." index="5" instance=ExtResource( 2 )]
-allow_movement = true
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 restart_on_death = true
 use_kill_y = false
 kill_y = -0.75
@@ -148,10 +149,6 @@ move_lerp = 3.0
 
 [node name="BrownSmolBowlingBall" parent="Enemies" index="0" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = true
@@ -163,10 +160,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall2" parent="Enemies" index="1" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -178,10 +171,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall3" parent="Enemies" index="2" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 6, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = true
@@ -193,10 +182,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall4" parent="Enemies" index="3" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 7.5, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -208,10 +193,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall5" parent="Enemies" index="4" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 9, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = true
@@ -223,10 +204,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall6" parent="Enemies" index="5" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 10, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -238,10 +215,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall7" parent="Enemies" index="6" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 10, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -253,10 +226,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall8" parent="Enemies" index="7" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 10, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -268,10 +237,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall9" parent="Enemies" index="8" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 15.5, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -283,10 +248,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall10" parent="Enemies" index="9" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 15, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -298,10 +259,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall11" parent="Enemies" index="10" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 15.5, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -313,10 +270,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall12" parent="Enemies" index="11" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, 20, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -328,10 +281,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall13" parent="Enemies" index="12" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 21, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -343,10 +292,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall14" parent="Enemies" index="13" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 22.5, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -358,10 +303,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall15" parent="Enemies" index="14" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5, 26.5, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -373,10 +314,6 @@ h_lerp = 5.0
 
 [node name="BrownSmolBowlingBall16" parent="Enemies" index="15" instance=ExtResource( 10 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 25, 0 )
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 health = 1
 reward_money = 25
 facing_left = false
@@ -409,7 +346,7 @@ shape = SubResource( 2 )
 [node name="SmolMoon" parent="." index="8" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0 )
 rotate_speed = Vector3( 0, 10, 0 )
-next_scene = ""
+next_scene = "res://Levels/Level6.tscn"
 
 [node name="MeshInstance" parent="SmolMoon" index="0"]
 mesh = SubResource( 17 )
@@ -417,6 +354,12 @@ material/0 = SubResource( 8 )
 
 [node name="CollisionShape" parent="SmolMoon/Area" index="0"]
 shape = SubResource( 9 )
+
+[node name="StaticBody" type="StaticBody" parent="SmolMoon" index="2"]
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="SmolMoon/StaticBody" index="0"]
+shape = SubResource( 18 )
 
 [node name="BottomEdge" type="StaticBody" parent="." index="9"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.344, 0 )

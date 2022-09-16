@@ -18,9 +18,9 @@
 [ext_resource path="res://Scripts/UI/HideBasedOnInputMethod.gd" type="Script" id=16]
 
 [sub_resource type="GDScript" id=5]
-script/source = "extends WorldEnvironment
+script/source = "extends LevelController
 
-export var music : AudioStream = null;
+export var music2 : AudioStream = null;
 
 func _ready():
 	Global.coin_counter.modulate = Color.transparent;
@@ -34,7 +34,7 @@ func _notification(what):
 		Global.allow_pause = true;
 
 func do_the_music():
-	MusicManager.set_music(music);
+	MusicManager.set_music(music2);
 "
 
 [sub_resource type="QuadMesh" id=6]
@@ -152,7 +152,7 @@ extents = Vector3( 5.5, 0.25, 0.25 )
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource( 2 )
 script = SubResource( 5 )
-music = ExtResource( 12 )
+music2 = ExtResource( 12 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
@@ -181,10 +181,7 @@ __meta__ = {
 
 [node name="SmolYuri" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67, 0.88, 0 )
-allow_movement = true
 override_gravity = true
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
 restart_on_death = true
 use_kill_y = true
 kill_y = -0.75
@@ -313,6 +310,7 @@ text = "Exit Game"
 script = SubResource( 3 )
 
 [node name="NavigationTutorial" type="Control" parent="CanvasLayer/Control"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

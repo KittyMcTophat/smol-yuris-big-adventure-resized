@@ -5,3 +5,7 @@
 
 [node name="KinematicBody" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )

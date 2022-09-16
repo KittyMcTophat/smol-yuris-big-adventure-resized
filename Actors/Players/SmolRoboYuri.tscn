@@ -5,8 +5,8 @@
 [ext_resource path="res://Sprites/Actors/Players/SmolRoboYuri/SmolRoboYuriWalking.png" type="Texture" id=3]
 
 [sub_resource type="CylinderShape" id=1]
-radius = 0.24
 height = 0.76
+radius = 0.24
 
 [sub_resource type="QuadMesh" id=2]
 size = Vector2( 0.72, 0.88 )
@@ -178,6 +178,25 @@ tracks/2/keys = {
 }
 
 [node name="SmolRoboYuri" instance=ExtResource( 2 )]
+allow_movement = true
+override_gravity = false
+gravity = Vector3( 0, -9.8, 0 )
+landing_squash = Vector3( 1.1, 0.9, 1.1 )
+restart_on_death = true
+use_kill_y = true
+kill_y = -0.75
+max_health = 3
+health = 3
+move_speed = 3.0
+jump_force = 6.0
+jump_force_after_stomp = 6.0
+h_lerp_grounded = 5.0
+h_lerp_midair = 1.5
+v_lerp = 3.0
+jump_squash = Vector3( 0.9, 1.1, 0.9 )
+coyote_time = 0.2
+jump_buffer = 0.2
+stomp_angle = 45.0
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
