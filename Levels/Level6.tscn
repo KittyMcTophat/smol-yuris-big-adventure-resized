@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tiles/MoonTiles.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Actors/Players/SmolRoboYuri.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/Backgrounds/Stars.png" type="Texture" id=6]
 [ext_resource path="res://Music/I Still Love You.WAV" type="AudioStream" id=7]
+[ext_resource path="res://Scripts/Other/DialogueStarter.gd" type="Script" id=8]
 
 [node name="WorldEnvironment" instance=ExtResource( 2 )]
 gravity = Vector3( 0, -6, 0 )
@@ -56,3 +57,11 @@ texture = null
 [node name="Sprite" parent="ParallaxBackground/Midground" index="0"]
 texture = null
 offset = Vector2( 0, 0 )
+
+[node name="Starting Dialogue" type="Node" parent="." index="7"]
+script = ExtResource( 8 )
+dialogue = "[
+	{\"speaker\":\"Smol Robo Yuri\", \"text\":\"Woah, I'm really on [color=red]the smol moon[/color]...\"},
+	{\"speaker\":\"Smol Robo Yuri\", \"text\":\"I guess I should start looking for [color=red]that smol cookie[/color].\"},
+]"
+speak_on_ready = true
