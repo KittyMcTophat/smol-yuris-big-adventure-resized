@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/Actors/Players/SmolRoboYuri/SmolRoboYuriStill.png" type="Texture" id=1]
 [ext_resource path="res://Actors/BaseActors/JumpingPlayer.tscn" type="PackedScene" id=2]
@@ -17,6 +17,10 @@ params_cull_mode = 2
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
 albedo_texture = ExtResource( 1 )
+
+[sub_resource type="CylinderShape" id=8]
+height = 0.15
+radius = 0.25
 
 [sub_resource type="Animation" id=4]
 resource_name = "Jumping"
@@ -178,35 +182,23 @@ tracks/2/keys = {
 }
 
 [node name="SmolRoboYuri" instance=ExtResource( 2 )]
-allow_movement = true
-override_gravity = false
-gravity = Vector3( 0, -9.8, 0 )
-landing_squash = Vector3( 1.1, 0.9, 1.1 )
-restart_on_death = true
-use_kill_y = true
-kill_y = -0.75
-max_health = 3
-health = 3
 move_speed = 3.0
-jump_force = 6.0
-jump_force_after_stomp = 6.0
-h_lerp_grounded = 5.0
-h_lerp_midair = 1.5
-v_lerp = 3.0
-jump_squash = Vector3( 0.9, 1.1, 0.9 )
-coyote_time = 0.2
-jump_buffer = 0.2
-stomp_angle = 45.0
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 
 [node name="MeshInstance" parent="MeshPivot" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.56, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0.06, 0 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="StompDetector" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.455, 0 )
+
+[node name="CollisionShape" parent="StompDetector" index="0"]
+shape = SubResource( 8 )
+
+[node name="AnimationPlayer" parent="." index="4"]
 anims/Jumping = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 anims/Still = SubResource( 6 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Actors/JumpingPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Actors/BaseActors/Player.tscn" type="PackedScene" id=2]
@@ -8,17 +8,50 @@
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
 
+[sub_resource type="CylinderShape" id=2]
+height = 0.15
+radius = 0.5
+
 [node name="KinematicBody" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+restart_on_death = true
+use_kill_y = true
+kill_y = -0.75
+max_health = 3
+health = 3
+move_speed = 4.0
+jump_force = 6.0
+jump_force_after_stomp = 6.0
+h_lerp_grounded = 5.0
+h_lerp_midair = 1.5
+v_lerp = 3.0
+jump_squash = Vector3( 0.9, 1.1, 0.9 )
+coyote_time = 0.2
+jump_buffer = 0.2
+stomp_angle = 45.0
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 
-[node name="Jump" type="AudioStreamPlayer" parent="." index="5"]
+[node name="MeshPivot" parent="." index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="StompDetector" type="Area" parent="." index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.575, 0 )
+collision_layer = 0
+collision_mask = 24
+monitorable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="StompDetector" index="0"]
+shape = SubResource( 2 )
+
+[node name="Jump" type="AudioStreamPlayer" parent="." index="6"]
 pause_mode = 2
 stream = ExtResource( 3 )
 bus = "SFX"
 
-[node name="StompSound" type="AudioStreamPlayer" parent="." index="7"]
+[node name="StompSound" type="AudioStreamPlayer" parent="." index="8"]
 stream = ExtResource( 5 )
 bus = "SFX"
+
+[connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]

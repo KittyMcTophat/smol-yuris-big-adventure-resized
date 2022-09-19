@@ -98,24 +98,11 @@ func body_stomped(body):
 	jumping_from_stomp = true;
 	_jump(jump_force_after_stomp, false);
 
-func touched_enemy(enemy : Enemy):
-	if check_stomp_angle(enemy):
-		enemy.hurt(1);
-		body_stomped(enemy);
-	else:
-		hurt(1);
-
-func touched_projectile(projectile : Projectile):
-	if check_stomp_angle(projectile):
-		projectile.queue_free();
-		body_stomped(projectile);
-	else:
-		hurt(1);
-
-func check_stomp_angle(other : Spatial) -> bool:
-	var relative_position : Vector3 = other.global_transform.origin - global_transform.origin;
-	relative_position = relative_position.normalized();
-	
-	if rad2deg(relative_position.angle_to(Vector3.DOWN)) <= stomp_angle:
-		return true;
-	return false;
+func _on_StompDetector_body_entered(body):
+	if velocity.y > 0.0:
+		return;
+	if body is Enemy:
+		body.hurt(1);
+	elif body is Projectile:
+		body.queue_free();
+	body_stomped(body);
