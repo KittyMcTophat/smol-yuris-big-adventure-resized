@@ -8,7 +8,6 @@ export(String, FILE, "*.json") var data_json : String = "";
 export var credits_music : AudioStream = null;
 export var scroll_speed : float = 20.0;
 
-
 var active : bool = false;
 var target_y : float = 0.0;
 
@@ -76,11 +75,11 @@ func _process(delta):
 	if $Node2D.position.y > target_y:
 		$Node2D.position.y -= scroll_speed * delta;
 	else:
-		$AnimationPlayer.play("Hide");
-		yield($AnimationPlayer, "animation_finished");
-		active = false;
-		Global.unpause_the_stuff();
 		emit_signal("credits_ended");
+		active = false;
+		yield(get_tree().create_timer(0.3), "timeout");
+		$AnimationPlayer.play("Hide");
+		Global.unpause_the_stuff();
 
 func roll_credits():
 	$Node2D.position.y = ProjectSettings.get_setting("display/window/size/height");

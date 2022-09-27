@@ -23,6 +23,10 @@ func _ready():
 		start_dialogue();
 
 func start_dialogue():
-	Global.dialogue_box.start_dialogue(parse_json(dialogue), hide_textbox_after_dialogue, unpause_after_dialogue);
+	var dialogue_array : Array = parse_json(dialogue);
+	for i in range(dialogue_array.size()):
+		dialogue_array[i]["text"] = dialogue_array[i]["text"].replace("[finalscore]", String(Global.coin_counter.money));
+	
+	Global.dialogue_box.start_dialogue(dialogue_array, hide_textbox_after_dialogue, unpause_after_dialogue);
 	yield(Global.dialogue_box, "dialogue_finished");
 	emit_signal("dialogue_finished");

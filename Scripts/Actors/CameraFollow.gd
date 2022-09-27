@@ -13,6 +13,8 @@ func _ready():
 func set_offset(value : Vector3):
 	$Camera.transform.origin = value;
 	$EdgeOfScreen.transform.origin.y = value.y;
+	$Camera.reset_physics_interpolation();
+	$EdgeOfScreen.reset_physics_interpolation();
 	offset = value;
 
 func _physics_process(_delta):

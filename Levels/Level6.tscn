@@ -163,7 +163,7 @@ h_lerp = 5.0
 
 [node name="SmolCookie" parent="." index="7" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 3.75, 0 )
-next_scene = ""
+next_scene = "res://Levels/Level6_Cutscene.tscn"
 
 [node name="MeshInstance" parent="SmolCookie" index="0"]
 material/0 = SubResource( 1 )

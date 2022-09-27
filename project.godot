@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/UI/Credits.gd"
 }, {
+"base": "Node",
+"class": "CreditsStarter",
+"language": "GDScript",
+"path": "res://Scripts/Other/CreditsStarter.gd"
+}, {
 "base": "Control",
 "class": "DialogueBox",
 "language": "GDScript",
@@ -110,6 +115,7 @@ _global_script_class_icons={
 "CoinCounter": "",
 "CollectableObject": "",
 "Credits": "",
+"CreditsStarter": "",
 "DialogueBox": "",
 "DialogueStarter": "",
 "Enemy": "",

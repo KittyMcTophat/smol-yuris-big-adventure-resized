@@ -182,27 +182,12 @@ __meta__ = {
 [node name="SmolYuri" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67, 0.88, 0 )
 override_gravity = true
-restart_on_death = true
-use_kill_y = true
-kill_y = -0.75
-max_health = 3
-health = 3
-move_speed = 4.0
-jump_force = 6.0
-jump_force_after_stomp = 6.0
-h_lerp_grounded = 5.0
-h_lerp_midair = 1.5
-v_lerp = 3.0
-jump_squash = Vector3( 0.9, 1.1, 0.9 )
-coyote_time = 0.2
-jump_buffer = 0.2
-stomp_angle = 45.0
 
 [node name="MeshInstance" parent="SmolYuri/MeshPivot" index="0"]
 mesh = SubResource( 6 )
 material/0 = SubResource( 7 )
 
-[node name="Jump" parent="SmolYuri" index="5"]
+[node name="Jump" parent="SmolYuri" index="6"]
 volume_db = -80.0
 
 [node name="HealthBar" parent="SmolYuri/CanvasLayer" index="0"]
