@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Levels/BaseLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Actors/Friends/SmolSayoriStill.png" type="Texture" id=2]
@@ -52,8 +52,27 @@ tracks/0/keys = {
 "values": [ Vector3( 1.75, 2.94, 0 ), Vector3( 1.75, 3.2, 0 ), Vector3( 1.75, 2.94, 0 ) ]
 }
 
+[sub_resource type="GDScript" id=4]
+script/source = "extends Timer
+
+signal secret_ending_earned;
+signal secret_ending_not_earned;
+
+export var secret_ending_requirement : int = 2000;
+
+func start(time : float = -1.0):
+	.start(time);
+
+func _on_Timer_timeout():
+	if Global.coin_counter.money >= secret_ending_requirement:
+		emit_signal(\"secret_ending_earned\");
+	else:
+		emit_signal(\"secret_ending_not_earned\");
+"
+
 [node name="WorldEnvironment" instance=ExtResource( 1 )]
 music = ExtResource( 6 )
+show_coin_counter = false
 
 [node name="GridMap (Ground)" parent="." index="2"]
 data = {
@@ -133,6 +152,7 @@ only_on_first_load = false
 [node name="Timer" type="Timer" parent="." index="14"]
 wait_time = 2.0
 one_shot = true
+script = SubResource( 4 )
 
 [node name="NonSecretEnding" type="Node" parent="." index="15"]
 script = ExtResource( 11 )
@@ -151,8 +171,16 @@ dialogue = "[
 script = ExtResource( 12 )
 next_scene = "res://MainMenu.tscn"
 
+[node name="SecretEnding" type="Node" parent="." index="17"]
+script = ExtResource( 11 )
+dialogue = "[
+	{\"speaker\":\"\", \"text\":\"You did it, this is the secret ending\"}
+]"
+
 [connection signal="dialogue_finished" from="StartingDialogue" to="Timer" method="start"]
-[connection signal="timeout" from="Timer" to="NonSecretEnding" method="start_dialogue"]
+[connection signal="secret_ending_earned" from="Timer" to="SecretEnding" method="start_dialogue"]
+[connection signal="secret_ending_not_earned" from="Timer" to="NonSecretEnding" method="start_dialogue"]
+[connection signal="timeout" from="Timer" to="Timer" method="_on_Timer_timeout"]
 [connection signal="dialogue_finished" from="NonSecretEnding" to="CreditsStarter" method="roll_credits"]
 
 [editable path="SmolCookie"]

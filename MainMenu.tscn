@@ -23,14 +23,12 @@ script/source = "extends LevelController
 export var music2 : AudioStream = null;
 
 func _ready():
-	Global.coin_counter.modulate = Color.transparent;
 	Global.allow_pause = false;
 	yield(get_tree(), \"idle_frame\");
 	do_the_music();
 
 func _notification(what):
 	if what == NOTIFICATION_PREDELETE:
-		Global.coin_counter.modulate = Color.white;
 		Global.allow_pause = true;
 
 func do_the_music():
@@ -152,6 +150,7 @@ extents = Vector3( 5.5, 0.25, 0.25 )
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = ExtResource( 2 )
 script = SubResource( 5 )
+show_coin_counter = false
 music2 = ExtResource( 12 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
