@@ -58,6 +58,11 @@ tracks/0/keys = {
 collision_layer = 4
 collision_mask = 97
 script = ExtResource( 1 )
+restart_on_death = true
+use_kill_y = true
+kill_y = -0.75
+max_health = 3
+health = 3
 
 [node name="MeshInstance" parent="MeshPivot" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )

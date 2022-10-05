@@ -7,7 +7,7 @@ var money : int = 0 setget set_money;
 onready var _label : Label = $MarginContainer/MarginContainer/Label;
 
 func _ready():
-	set_money(0);
+	set_money(money);
 
 func set_money(amount : int):
 	money = amount;

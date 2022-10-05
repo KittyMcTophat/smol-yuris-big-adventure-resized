@@ -100,7 +100,7 @@ texture = ExtResource( 3 )
 [node name="SmolCookie" parent="." index="8" instance=ExtResource( 5 )]
 pause_mode = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 2, 0 )
-next_scene = ""
+next_scene = "res://Levels/SecretLevel.tscn"
 
 [node name="MeshInstance" parent="SmolCookie" index="0"]
 material/0 = SubResource( 1 )
@@ -136,9 +136,9 @@ dialogue = "[
 	{\"speaker\":\"\", \"text\":\"Smol Sayori bites into the [color=red]smol moon cookie[/color].\"},
 	{\"speaker\":\"Smol Sayori\", \"text\":\"This... is the best smol cookie I've ever tasted!\"},
 	{\"speaker\":\"\", \"text\":\"Smol Sayori sheds a smol tear of joy.\"},
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Thank you, Smol Yuri!\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Thank you, [color=purple]Smol Yuri[/color]!\"},
 	{\"speaker\":\"Smol Yuri\", \"text\":\"Thanks, but I didn't do it alone...\"},
-	{\"speaker\":\"Smol Sayori\", \"text\":\"Thanks so much, all of you!\"},
+	{\"speaker\":\"Smol Sayori\", \"text\":\"Thanks so much, [color=purple]all of you[/color]!\"},
 	{\"speaker\":\"\", \"text\":\"Smol Sayori runs over to her smol friends and hugs each of them.\"},
 	{\"text\":\"[center][wave freq=2.5][rainbow freq=0.1]
 - You Win! -[/rainbow][/wave]
@@ -146,10 +146,12 @@ dialogue = "[
 Final Score: [finalscore]\"},
 	
 ]"
+unpause_after_dialogue = false
 speak_on_ready = true
 only_on_first_load = false
 
 [node name="Timer" type="Timer" parent="." index="14"]
+pause_mode = 2
 wait_time = 2.0
 one_shot = true
 script = SubResource( 4 )
@@ -174,7 +176,15 @@ next_scene = "res://MainMenu.tscn"
 [node name="SecretEnding" type="Node" parent="." index="17"]
 script = ExtResource( 11 )
 dialogue = "[
-	{\"speaker\":\"\", \"text\":\"You did it, this is the secret ending\"}
+	{\"speaker\":\"Smol Sayori\", \"text\":\"So, what happens now?\"},
+	
+	{\"speaker\":\"Smol Monika\", \"text\":\"Well, I found a [rainbow freq=0.1]secret level[/rainbow] hidden in the code.\"},
+	{\"text\":\"I would've just ignored it, but [color=purple]Smol Yuri[/color] found enough smol coins that I think she can handle it.\"},
+	
+	{\"speaker\":\"Smol Yuri\", \"text\":\"What are you talking about?\"},
+	
+	{\"speaker\":\"Smol Monika\", \"text\":\"Here, I'll show you!\"},
+	
 ]"
 
 [connection signal="dialogue_finished" from="StartingDialogue" to="Timer" method="start"]
@@ -182,5 +192,6 @@ dialogue = "[
 [connection signal="secret_ending_not_earned" from="Timer" to="NonSecretEnding" method="start_dialogue"]
 [connection signal="timeout" from="Timer" to="Timer" method="_on_Timer_timeout"]
 [connection signal="dialogue_finished" from="NonSecretEnding" to="CreditsStarter" method="roll_credits"]
+[connection signal="dialogue_finished" from="SecretEnding" to="SmolCookie" method="collect_no_args"]
 
 [editable path="SmolCookie"]

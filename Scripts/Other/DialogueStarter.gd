@@ -20,6 +20,7 @@ func _ready():
 				return;
 		else:
 			pass;
+		yield(get_tree(), "idle_frame");
 		start_dialogue();
 
 func start_dialogue():

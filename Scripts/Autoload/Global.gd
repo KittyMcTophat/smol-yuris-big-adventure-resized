@@ -41,6 +41,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
 	set_process_input(true);
 	pause_mode = PAUSE_MODE_PROCESS;
+	
+	_money = coin_counter.money;
 
 func reload_scene():
 	print("reloading scene");
