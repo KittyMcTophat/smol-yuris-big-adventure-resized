@@ -33,6 +33,7 @@ func _ready():
 	ui_canvas_layer.add_child(pause_menu);
 	ui_canvas_layer.add_child(dialogue_box);
 	ui_canvas_layer.add_child(credits);
+	ui_canvas_layer.add_child(preload("res://UI/SplashScreen.tscn").instance());
 	ui_canvas_layer.add_child(preload("res://UI/MouseBlocker.tscn").instance());
 	ui_canvas_layer.layer = 1;
 	yield(get_tree(), "idle_frame");

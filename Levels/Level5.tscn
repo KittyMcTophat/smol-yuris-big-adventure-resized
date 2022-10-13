@@ -137,11 +137,7 @@ data = {
 }
 
 [node name="YurisFloatingHead" parent="." index="5" instance=ExtResource( 2 )]
-restart_on_death = true
 use_kill_y = false
-kill_y = -0.75
-max_health = 3
-health = 3
 move_speed = Vector2( 4, 4 )
 move_lerp = 3.0
 

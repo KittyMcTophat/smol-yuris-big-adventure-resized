@@ -13,6 +13,7 @@ size = Vector2( 0.66, 3.28 )
 
 [sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
+render_priority = 1
 params_cull_mode = 2
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98

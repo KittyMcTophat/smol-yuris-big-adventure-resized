@@ -12,6 +12,7 @@ onready var anim_player : AnimationPlayer = $AnimationPlayer;
 
 var was_pause_allowed_before : bool = true;
 var active : bool = false;
+var paused : bool = false;
 var done_printing : bool = false;
 var current_printing : Dictionary = {};
 
@@ -19,7 +20,7 @@ var time_since_last_char : float = 0.0;
 export var char_delay : float = 0.02;
 
 func _process(delta):
-	if active == false:
+	if active == false || paused:
 		return;
 	
 	if Input.is_action_just_pressed("ui_accept"):

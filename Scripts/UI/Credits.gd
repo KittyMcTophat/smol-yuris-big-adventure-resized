@@ -6,7 +6,7 @@ signal credits_ended;
 
 export(String, FILE, "*.json") var data_json : String = "";
 export var credits_music : AudioStream = null;
-export var scroll_speed : float = 20.0;
+export var scroll_speed : float = 9.75;
 
 var active : bool = false;
 var target_y : float = 0.0;

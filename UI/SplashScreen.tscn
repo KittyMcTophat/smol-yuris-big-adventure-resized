@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/UI/Credits/MadeByKitty_McTophat(Texture).png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+func _ready():
+	Global.dialogue_box.paused = true;
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		Global.dialogue_box.paused = false;
+"
+
+[sub_resource type="Animation" id=2]
+resource_name = "Play Splash Screen"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect/TextureRect:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.3, 0.3, 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect/TextureRect:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.7, 0.7, 0.5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect/TextureRect:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect/TextureRect:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="SplashScreen" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.141176, 0.141176, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Play Splash Screen"
+"anims/Play Splash Screen" = SubResource( 2 )
+anims/RESET = SubResource( 3 )
