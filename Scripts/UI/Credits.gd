@@ -6,7 +6,8 @@ signal credits_ended;
 
 export(String, FILE, "*.json") var data_json : String = "";
 export var credits_music : AudioStream = null;
-export var scroll_speed : float = 9.75;
+export var get_speed_from_music : bool = true;
+export var scroll_speed : float = 10.0;
 
 var active : bool = false;
 var target_y : float = 0.0;
@@ -66,6 +67,9 @@ func _ready():
 	
 	yield($Node2D/VBoxContainer, "resized");
 	target_y = $Node2D/VBoxContainer.rect_size.y * -1.0;
+	
+	if get_speed_from_music && credits_music != null:
+		scroll_speed = abs(target_y - $Node2D.position.y) / credits_music.get_length();
 	
 	$Examples.queue_free();
 
