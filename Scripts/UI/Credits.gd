@@ -8,6 +8,7 @@ export(String, FILE, "*.json") var data_json : String = "";
 export var credits_music : AudioStream = null;
 export var get_speed_from_music : bool = true;
 export var scroll_speed : float = 10.0;
+export var speedup_multiplier : float = 10.0;
 
 var active : bool = false;
 var target_y : float = 0.0;
@@ -77,7 +78,10 @@ func _process(delta):
 	if active == false:
 		return;
 	if $Node2D.position.y > target_y:
-		$Node2D.position.y -= scroll_speed * delta;
+		var mult : float = 1.0;
+		if Input.is_action_pressed("ui_accept"):
+			mult = speedup_multiplier;
+		$Node2D.position.y -= scroll_speed * mult * delta;
 	else:
 		emit_signal("credits_ended");
 		active = false;
