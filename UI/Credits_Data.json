@@ -1,4 +1,6 @@
 [
+    {"type":"Image", "image_path":"res://UI/Logo_Image.png", "scale":1},
+
     {"type":"Image", "image_path":"res://Sprites/UI/Credits/MadeByKitty_McTophat.png", "scale":2},
     
     {"type":"Subtitle", "text":"", "amount":3},
