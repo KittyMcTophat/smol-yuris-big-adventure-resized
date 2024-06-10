@@ -1,4 +1,4 @@
-# Smol Yuri's Bigger Adventure
+# Smol Yuri's Big Adventure: Resized
 A remake of Smol Yuri's Big Adventure with all new levels as well.
 
 &nbsp;
