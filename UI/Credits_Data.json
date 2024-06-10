@@ -50,12 +50,14 @@
     
     {"type":"Subtitle", "text":"", "amount":2},
     
-    {"type":"Subtitle", "text":"This game uses the font \"Press Start 2P\"\n which is licensed under the SIL Open Font License,\navailable at scripts.sil.org/OFL"},
+    {"type":"Title", "text":"Main Font"},
+    {"type":"Subtitle", "text":"\"Press Start 2P\" by CodeMan38\nwhich is licensed under the SIL Open Font License,\navailable at scripts.sil.org/OFL"},
+    
     {"type":"Subtitle", "text":"", "amount":2},
 
     {"type":"Title", "text":"Logo Font"},
     {"type":"Subtitle", "text":"\"Hey Comic\" by Khurasan"},
-    
+
     {"type":"Subtitle", "text":"", "amount":2},
 
     {"type":"Title", "text":"Made with the Godot Engine"},
