@@ -134,7 +134,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Smol Yuri's Bigger Adventure"
+config/name="Smol Yuri's Big Adventure: Resized"
 run/main_scene="res://MainMenu.tscn"
 config/icon="res://Sprites/Actors/Players/SmolYuri/SmolYuriStill.png"
 

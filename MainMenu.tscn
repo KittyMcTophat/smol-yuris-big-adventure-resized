@@ -249,11 +249,10 @@ custom_constants/margin_left = 10
 custom_constants/margin_bottom = 0
 
 [node name="Logo" type="TextureRect" parent="CanvasLayer/Control/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 280.0
-margin_bottom = 135.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 9 )
+stretch_mode = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control"]
 anchor_left = 0.5
@@ -337,7 +336,7 @@ anchor_bottom = 1.0
 [node name="Node" type="Node" parent="Disclaimer"]
 script = ExtResource( 14 )
 dialogue = "[
-	{\"text\":\"[color=purple]Smol Yuri's Bigger Adventure[/color] is a [color=fuchsia]Doki Doki Literature Club[/color] fan game that is not affiliated with Team Salvato.\"},
+	{\"text\":\"[color=purple]Smol Yuri's Big Adventure: Resized[/color] is a [color=fuchsia]Doki Doki Literature Club[/color] fan game that is not affiliated with Team Salvato.\"},
 	{\"text\":\"It is designed to be played only after the official game has been completed.\"},
 	{\"text\":\"You can download [color=fuchsia]Doki Doki Literature Club[/color] at: http://ddlc.moe\"},
 ]"
