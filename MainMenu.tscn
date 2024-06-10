@@ -249,8 +249,10 @@ custom_constants/margin_left = 10
 custom_constants/margin_bottom = 0
 
 [node name="Logo" type="TextureRect" parent="CanvasLayer/Control/MarginContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 275.0
+margin_bottom = 135.0
 texture = ExtResource( 9 )
 stretch_mode = 4
 
@@ -293,6 +295,7 @@ text = "Exit Game"
 script = SubResource( 3 )
 
 [node name="NavigationTutorial" type="Control" parent="CanvasLayer/Control"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
